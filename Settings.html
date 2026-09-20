@@ -1,0 +1,343 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>الإعدادات - Alislamiah</title><style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, "Segoe UI", sans-serif;
+    background:#061329;
+    color:#fff;
+    min-height:100vh;
+}
+
+/* Header */
+.header{
+    height:72px;
+    display:flex;
+    align-items:center;
+    padding:0 20px;
+    background:#071a38;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.header h1{
+    font-size:22px;
+    font-weight:700;
+}
+
+/* Main */
+.container{
+    max-width:700px;
+    margin:auto;
+    padding:25px 16px 40px;
+}
+
+.section-title{
+    font-size:13px;
+    color:#7894bc;
+    margin:10px 8px;
+    font-weight:bold;
+}
+
+/* Settings card */
+.settings-card{
+    background:#0a1d3b;
+    border:1px solid rgba(80,130,210,.18);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 30px rgba(0,0,0,.20);
+}
+
+/* Setting item */
+.setting{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    min-height:72px;
+    padding:15px 18px;
+    cursor:pointer;
+    transition:background .2s;
+}
+
+.setting:hover{
+    background:#0d2549;
+}
+
+.setting + .setting{
+    border-top:1px solid rgba(255,255,255,.07);
+}
+
+.setting-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.icon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#102b55;
+    color:#63a4ff;
+    font-size:21px;
+    flex-shrink:0;
+}
+
+.setting-text{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.setting-title{
+    font-size:16px;
+    font-weight:600;
+}
+
+.setting-subtitle{
+    font-size:12px;
+    color:#7f96b8;
+}
+
+/* Arrow */
+.arrow{
+    font-size:22px;
+    color:#6683a9;
+}
+
+/* Language */
+.language-options{
+    display:flex;
+    gap:8px;
+    direction:ltr;
+}
+
+.language{
+    border:1px solid #27456f;
+    background:#091b37;
+    color:#a9bddb;
+    padding:8px 13px;
+    border-radius:10px;
+    font-size:13px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.language.active{
+    background:#1769d2;
+    border-color:#3285ed;
+    color:white;
+}
+
+/* Footer */
+.footer{
+    text-align:center;
+    color:#506987;
+    font-size:12px;
+    margin-top:35px;
+    line-height:1.8;
+}
+</style></head><body><header class="header">
+    <h1 id="pageTitle">الإعدادات</h1>
+</header><main class="container"><div class="section-title" id="generalTitle">
+    عام
+</div>
+
+<div class="settings-card">
+
+    <!-- About -->
+    <div class="setting" onclick="openAbout()">
+
+        <div class="setting-info">
+
+            <div class="icon">ⓘ</div>
+
+            <div class="setting-text">
+                <div class="setting-title" id="aboutTitle">
+                    عن Alislamiah
+                </div>
+
+                <div class="setting-subtitle" id="aboutSubtitle">
+                    معلومات عن Alislamiah
+                </div>
+            </div>
+
+        </div>
+
+        <div class="arrow">‹</div>
+
+    </div>
+
+
+    <!-- Language -->
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <div class="icon">文</div>
+
+            <div class="setting-text">
+                <div class="setting-title" id="languageTitle">
+                    لغة التطبيق
+                </div>
+
+                <div class="setting-subtitle" id="languageSubtitle">
+                    اختر لغة التطبيق
+                </div>
+            </div>
+
+        </div>
+
+        <div class="language-options">
+
+            <button
+                class="language"
+                id="englishBtn"
+                onclick="setLanguage('en')">
+                English
+            </button>
+
+            <button
+                class="language"
+                id="arabicBtn"
+                onclick="setLanguage('ar')">
+                العربية
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <div id="footerText">Alislamiah</div>
+    <div>© 2026</div>
+</div>
+
+</main><script>
+
+/* =========================
+   About Alislamiah
+========================= */
+
+function openAbout(){
+    window.location.href =
+    "https://mohamedmadoui5195.github.io/Alislamiah-_net/about.html";
+}
+
+
+/* =========================
+   Translations
+========================= */
+
+const translations = {
+
+    ar:{
+        pageTitle:"الإعدادات",
+        generalTitle:"عام",
+        aboutTitle:"عن Alislamiah",
+        aboutSubtitle:"معلومات عن Alislamiah",
+        languageTitle:"لغة التطبيق",
+        languageSubtitle:"اختر لغة التطبيق",
+        footer:"Alislamiah"
+    },
+
+    en:{
+        pageTitle:"Settings",
+        generalTitle:"General",
+        aboutTitle:"About Alislamiah",
+        aboutSubtitle:"Information about Alislamiah",
+        languageTitle:"App language",
+        languageSubtitle:"Choose your app language",
+        footer:"Alislamiah"
+    }
+
+};
+
+
+/* =========================
+   Change Language
+========================= */
+
+function setLanguage(language){
+
+    /* Save language */
+    localStorage.setItem("alislamiah_language", language);
+
+    applyLanguage(language);
+}
+
+
+/* =========================
+   Apply Language
+========================= */
+
+function applyLanguage(language){
+
+    const t = translations[language];
+
+    if(!t) return;
+
+    document.documentElement.lang = language;
+
+    if(language === "ar"){
+        document.documentElement.dir = "rtl";
+    }else{
+        document.documentElement.dir = "ltr";
+    }
+
+    document.getElementById("pageTitle").textContent =
+        t.pageTitle;
+
+    document.getElementById("generalTitle").textContent =
+        t.generalTitle;
+
+    document.getElementById("aboutTitle").textContent =
+        t.aboutTitle;
+
+    document.getElementById("aboutSubtitle").textContent =
+        t.aboutSubtitle;
+
+    document.getElementById("languageTitle").textContent =
+        t.languageTitle;
+
+    document.getElementById("languageSubtitle").textContent =
+        t.languageSubtitle;
+
+    document.getElementById("footerText").textContent =
+        t.footer;
+
+
+    /* Active button */
+
+    document.getElementById("englishBtn")
+        .classList.toggle("active", language === "en");
+
+    document.getElementById("arabicBtn")
+        .classList.toggle("active", language === "ar");
+}
+
+
+/* =========================
+   Load Saved Language
+========================= */
+
+const savedLanguage =
+    localStorage.getItem("alislamiah_language") || "ar";
+
+applyLanguage(savedLanguage);
+
+</script></body>
+</html>
