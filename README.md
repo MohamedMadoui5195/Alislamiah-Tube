@@ -7,39 +7,128 @@
   <link rel="icon" href="icon.png" type="image/png">
   <link href="https://googleapis.com" rel="stylesheet">
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Cairo',sans-serif;background:#0f0f0f;color:#fff;min-height:100vh;padding-bottom:80px}
-    .header{background:#1a1a1a;padding:12px 20px;position:sticky;top:0;z-index:100;border-bottom:1px solid #333;display:flex;align-items:center;gap:12px}
-    .app-icon{width:42px;height:42px;border-radius:10px;object-fit:cover}
-    .header h1{font-size:1.4rem;font-weight:700;color:#4ade80}
-    .main-content{padding:20px;max-width:1200px;margin:0 auto}
-    .section-title{font-size:1.3rem;margin-bottom:20px;color:#e5e5e5}
-    .videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-    .video-card{background:#1a1a1a;border-radius:12px;overflow:hidden;text-decoration:none;color:#fff;display:block}
-    .video-thumbnail{width:100%;aspect-ratio:16/9;background:#000}
-    .video-thumbnail video{width:100%;height:100%;object-fit:cover;pointer-events:none}
-    .video-info{padding:14px}
-    .video-title{font-size:1rem;font-weight:600;line-height:1.4;margin-bottom:6px}
-    .video-meta{font-size:0.85rem;color:#888}
-    .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #333;z-index:100}
-    .nav-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#888;font-size:0.8rem;gap:4px}
-    .nav-item.active{color:#4ade80}
-    .nav-item .icon{font-size:1.4rem}
-    
-    /* تنسيق زر تحويل اللغة في الهيدر */
-    .lang-toggle-btn {margin-right:auto; background:#4ade80; color:#000; border:none; padding:6px 14px; border-radius:8px; font-family:'Cairo',sans-serif; font-weight:700; cursor:pointer; font-size:0.85rem; transition:0.2s}
-    .lang-toggle-btn:hover {background:#3bbd6c}
-    /* عند قلب الاتجاه للغة الإنجليزية يندفع الزر لليسار تلقائيًا */
-    html[dir="ltr"] .lang-toggle-btn {margin-left:auto; margin-right:0}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #07111f;
+      color: #fff;
+      min-height: 100vh;
+      padding-bottom: 90px;
+    }
+    .header {
+      background: #0a1728;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #18304b;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .app-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .header h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #6fb7ff;
+    }
+    .main-content {
+      padding: 24px 16px 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .video-card {
+      background: #0b1a2c;
+      border: 1px solid #173553;
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: #fff;
+      display: block;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    }
+    .video-thumbnail {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+    .video-thumbnail video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .video-info {
+      padding: 14px;
+    }
+    .video-title {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      color: #f5f9ff;
+    }
+    .video-meta {
+      font-size: 0.85rem;
+      color: #718ba6;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #081525;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #17304a;
+      z-index: 100;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #718096;
+      font-size: 0.78rem;
+      gap: 4px;
+      min-width: 70px;
+    }
+    .nav-item.active {
+      color: #62b4ff;
+    }
+    .nav-item .icon {
+      font-size: 1.35rem;
+    }
   </style>
 </head>
 <body>
+  <!-- الهيدر -->
   <header class="header">
-    <img src="icon.png" class="app-icon" alt="Alislamiah-Tube Icon">
-    <h1>Alislamiah-Tube</h1>
-    
-    <!-- زر تبديل اللغة المضاف ذكياً وبحفظ تلقائي 🌐 -->
-    <button id="lang-btn" class="lang-toggle-btn" onclick="toggleLanguage()">EN</button>
+    <img src="icon.png" class="app-icon" alt="Alislamiah">
+    <h1 id="header-title">Alislamiah-Tube</h1>
   </header>
 
   <main class="main-content">
@@ -153,63 +242,47 @@
     </div>
   </main>
 
-  <!-- القائمة السفلية المعدلة بتبديل جيميناي بصفحة الإعدادات ⚙️ -->
+  <!-- القائمة السفلية المتناسقة مع تصميمك -->
   <nav class="bottom-nav">
-    <a href="index.html" class="nav-item active"><span class="icon">🏠</span><span id="nav-home">الرئيسية</span></a>
-    <a href="search.html" class="nav-item"><span class="icon">🔍</span><span id="nav-search">البحث</span></a>
-    <a href="Settings.html" class="nav-item"><span class="icon">⚙️</span><span id="nav-settings">الإعدادات</span></a>
+    <a href="index.html" class="nav-item active">
+      <span class="icon">🏠</span>
+      <span id="nav-home">الرئيسية</span>
+    </a>
+    <a href="search.html" class="nav-item">
+      <span class="icon">🔍</span>
+      <span id="nav-search">البحث</span>
+    </a>
+    <a href="Settings.html" class="nav-item">
+      <span class="icon">⚙️</span>
+      <span id="nav-settings">الإعدادات</span>
+    </a>
   </nav>
 
   <script>
-    // قاموس اللغات لتبديل النصوص والاتجاهات
+    // قاموس اللغات الثلاثي المتوافق 100% مع ملف الإعدادات الخاص بك
     const translations = {
-      ar: {
-        title: "أحدث الفيديوهات",
-        home: "الرئيسية",
-        search: "البحث",
-        settings: "الإعدادات",
-        btn: "EN",
-        dir: "rtl"
-      },
-      en: {
-        title: "Latest Videos",
-        home: "Home",
-        search: "Search",
-        settings: "Settings",
-        btn: "AR",
-        dir: "ltr"
-      }
+      ar: { dir: "rtl", header: "Alislamiah-Tube", title: "أحدث الفيديوهات", home: "الرئيسية", search: "البحث", settings: "الإعدادات" },
+      fr: { dir: "ltr", header: "Alislamiah-Tube", title: "Dernières Vidéos", home: "Accueil", search: "Recherche", settings: "Paramètres" },
+      en: { dir: "ltr", header: "Alislamiah-Tube", title: "Latest Videos", home: "Home", search: "Search", settings: "Settings" }
     };
 
-    let currentLang = localStorage.getItem('app_lang') || 'ar';
+    // جلب خيار اللغة المحفوظ من ملف الإعدادات
+    let currentLang = localStorage.getItem("app_lang") || "ar";
 
     function applyLanguage(lang) {
-      document.documentElement.setAttribute('dir', translations[lang].dir);
-      document.documentElement.setAttribute('lang', lang);
+      if (!translations[lang]) lang = "ar";
+      const t = translations[lang];
 
-      if(document.getElementById('main-section-title')) {
-        document.getElementById('main-section-title').innerText = translations[lang].title;
-      }
-      if(document.getElementById('nav-home')) {
-        document.getElementById('nav-home').innerText = translations[lang].home;
-      }
-      if(document.getElementById('nav-search')) {
-        document.getElementById('nav-search').innerText = translations[lang].search;
-      }
-      if(document.getElementById('nav-settings')) {
-        document.getElementById('nav-settings').innerText = translations[lang].settings;
-      }
-      
-      document.getElementById('lang-btn').innerText = translations[lang].btn;
+      document.documentElement.setAttribute("lang", lang);
+      document.documentElement.setAttribute("dir", t.dir);
+
+      document.getElementById("header-title").textContent = t.header;
+      document.getElementById("main-section-title").textContent = t.title;
+      document.getElementById("nav-home").textContent = t.home;
+      document.getElementById("nav-search").textContent = t.search;
+      document.getElementById("nav-settings").textContent = t.settings;
     }
 
-    function toggleLanguage() {
-      currentLang = currentLang === 'ar' ? 'en' : 'ar';
-      localStorage.setItem('app_lang', currentLang);
-      applyLanguage(currentLang);
-    }
-
-    // تفعيل اللغة مباشرة فور فتح التطبيق
     applyLanguage(currentLang);
   </script>
 </body>
