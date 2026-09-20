@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مشاهدة - Alislamiah-Tube</title>
+  <link rel="icon" href="assets/images/icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Cairo',sans-serif;background:#0f0f0f;color:#fff;min-height:100vh;padding-bottom:80px}
+    .header{background:#1a1a1a;padding:12px 20px;position:sticky;top:0;z-index:100;border-bottom:1px solid #333;display:flex;align-items:center;gap:12px}
+    .app-icon{width:42px;height:42px;border-radius:10px;object-fit:cover}
+    .header h1{font-size:1.4rem;font-weight:700;color:#4ade80}
+    .main-content{padding:20px;max-width:900px;margin:0 auto}
+    .player{width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-bottom:20px}
+    .player video{width:100%;height:100%;object-fit:contain}
+    .video-title{font-size:1.3rem;font-weight:700;margin-bottom:16px;line-height:1.4}
+    .actions{display:flex;gap:12px;margin-bottom:20px}
+    .btn{padding:10px 22px;border:none;border-radius:8px;font-family:'Cairo',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px}
+    .btn-like{background:#333;color:#fff}
+    .btn-like.liked{background:#4ade80;color:#000}
+    .btn-share{background:#333;color:#fff}
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #333;z-index:100}
+    .nav-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#888;font-size:0.8rem;gap:4px}
+    .nav-item .icon{font-size:1.4rem}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <img src="assets/images/icon.png" class="app-icon" alt="icon" onerror="this.style.display='none'">
+    <h1>Alislamiah-Tube</h1>
+  </header>
+
+  <main class="main-content">
+    <div class="player">
+      <video id="mainVideo" controls autoplay></video>
+    </div>
+    <h2 class="video-title" id="videoTitle"></h2>
+    <div class="actions">
+      <button class="btn btn-like" id="likeBtn" onclick="toggleLike()">❤️ لايك</button>
+      <button class="btn btn-share" onclick="shareVideo()">📤 مشاركة</button>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item"><span class="icon">🏠</span><span>الرئيسية</span></a>
+    <a href="search.html" class="nav-item"><span class="icon">🔍</span><span>البحث</span></a>
+    <a href="https://gemini.google.com" target="_blank" class="nav-item"><span class="icon">✨</span><span>Gemini</span></a>
+  </nav>
+
+  <script>
+    const videos = {
+      1: {file:"assets/videos/IMG_20260814_164242_861.mp4", title:"ما تيسر من سورة إبراهيم"},
+      2: {file:"assets/videos/lv_0_20260824111719.mp4", title:"آيات من سورة مريم بصوت مشاري راشد العفاسي"}
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('v');
+    const video = videos[id];
+
+    if (video) {
+      document.getElementById('mainVideo').src = video.file;
+      document.getElementById('videoTitle').textContent = video.title;
+      document.title = video.title + ' - Alislamiah-Tube';
+    } else {
+      document.getElementById('videoTitle').textContent = 'الفيديو غير موجود';
+    }
+
+    function toggleLike() {
+      const btn = document.getElementById('likeBtn');
+      btn.classList.toggle('liked');
+      btn.innerHTML = btn.classList.contains('liked') ? '💚 تم الإعجاب' : '❤️ لايك';
+    }
+
+    function shareVideo() {
+      const title = document.getElementById('videoTitle').textContent;
+      if (navigator.share) {
+        navigator.share({title: title, text: title, url: window.location.href});
+      } else {
+        navigator.clipboard.writeText(title + ' - ' + window.location.href);
+        alert('تم نسخ الرابط');
+      }
+    }
+  </script>
+</body>
+</html>
