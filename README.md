@@ -29,14 +29,13 @@
 </head>
 <body>
   <header class="header">
-    <img src="assets/images/icon.png" class="app-icon" alt="icon">
+    <img src="assets/images/icon.png" class="app-icon" alt="icon" onerror="this.style.display='none'">
     <h1>Alislamiah-Tube</h1>
   </header>
 
   <main class="main-content">
     <h2 class="section-title">أحدث الفيديوهات</h2>
     <div class="videos-grid">
-
       <a href="watch.html?v=1" class="video-card">
         <div class="video-thumbnail">
           <video preload="metadata" muted>
@@ -48,7 +47,6 @@
           <div class="video-meta">Alislamiah-Tube</div>
         </div>
       </a>
-
       <a href="watch.html?v=2" class="video-card">
         <div class="video-thumbnail">
           <video preload="metadata" muted>
@@ -60,7 +58,6 @@
           <div class="video-meta">Alislamiah-Tube</div>
         </div>
       </a>
-
     </div>
   </main>
 
