@@ -61,9 +61,25 @@
         </div>
         <div class="video-info">
           <div class="video-title">آيات من سورة مريم بصوت مشاري راشد العفاسي</div>
+          <div
+
+ class="video-meta">Alislamiah-Tube</div>
+        </div>
+      </a>
+
+      <!-- الفيديو الثالث: بل الساعة موعدهم - الشيخ مشاري العفاسي 🌟 -->
+      <a href="watch.html?v=IMG_20260812_142700_033.mp4&title=بل الساعة موعدهم والساعة أدهى وأمر تلاوة عطرة بصوت الشيخ مشاري العفاسي" class="video-card">
+        <div class="video-thumbnail">
+          <video preload="metadata" muted autoplay loop playsinline>
+            <source src="IMG_20260812_142700_033.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-info">
+          <div class="video-title">بل الساعة موعدهم والساعة أدهى وأمر تلاوة عطرة بصوت الشيخ مشاري العفاسي</div>
           <div class="video-meta">Alislamiah-Tube</div>
         </div>
       </a>
+
 
     </div>
   </main>
