@@ -4,56 +4,86 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>البحث - Alislamiah-Tube</title>
-  <!-- 1. تصحيح مسار أيقونة التبويب لتظهر أعلى المتصفح ✅ -->
   <link rel="icon" href="icon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Cairo',sans-serif;background:#0f0f0f;color:#fff;min-height:100vh;padding-bottom:80px}
-    .header{background:#1a1a1a;padding:12px 20px;position:sticky;top:0;z-index:100;border-bottom:1px solid #333;display:flex;align-items:center;gap:12px}
-    .app-icon{width:42px;height:42px;border-radius:10px;object-fit:cover}
-    .header h1{font-size:1.4rem;font-weight:700;color:#4ade80}
-    .main-content{padding:40px 20px;max-width:600px;margin:0 auto;text-align:center}
-    .search-box{display:flex;gap:10px}
-    .search-box input{flex:1;padding:14px 18px;border:none;border-radius:12px;background:#1a1a1a;color:#fff;font-size:1rem;font-family:'Cairo',sans-serif;outline:none}
-    .search-box input::placeholder{color:#666}
-    .search-box button{padding:14px 28px;background:#4ade80;color:#000;border:none;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;font-family:'Cairo',sans-serif}
-    .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #333;z-index:100}
-    .nav-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#888;font-size:0.8rem;gap:4px}
-    .nav-item.active{color:#4ade80}
-    .nav-item .icon{font-size:1.4rem}
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { font-family: Arial, Tahoma, sans-serif; background: #07111f; color: #fff; min-height: 100vh; padding-bottom: 90px; }
+    .header { background: #0a1728; padding: 12px 20px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #18304b; display: flex; align-items: center; gap: 12px; }
+    .app-icon { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; }
+    .header h1 { font-size: 1.35rem; font-weight: 700; color: #6fb7ff; }
+    .main-content { padding: 40px 16px; max-width: 600px; margin: 0 auto; text-align: center; }
+    .search-box { display: flex; gap: 10px; }
+    .search-box input { flex: 1; padding: 14px 18px; border: 1px solid #173553; border-radius: 12px; background: #0b1a2c; color: #fff; font-size: 1rem; outline: none; }
+    .search-box input:focus { border-color: #4da8ff; }
+    .search-box button { padding: 14px 28px; background: #1678c9; color: #fff; border: 1px solid #1c4b76; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; }
+    .search-box button:active { background: #102640; }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #081525; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #17304a; z-index: 100; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: #718096; font-size: 0.78rem; gap: 4px; min-width: 70px; }
+    .nav-item.active { color: #62b4ff; }
+    .nav-item .icon { font-size: 1.35rem; }
   </style>
 </head>
 <body>
   <header class="header">
-    <!-- 2. تصحيح مسار الأيقونة في الهيدر لتعمل في صفحة البحث ✅ -->
-    <img src="icon.png" class="app-icon" alt="Alislamiah-Tube">
-    <h1>البحث</h1>
+    <img src="icon.png" class="app-icon" alt="Alislamiah">
+    <h1 id="header-title">Alislamiah-Tube</h1>
   </header>
 
   <main class="main-content">
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="إبحث عن فيديو">
-      <button onclick="goSearch()">بحث</button>
+      <button onclick="goSearch()" id="search-btn">بحث</button>
     </div>
   </main>
 
   <nav class="bottom-nav">
-    <a href="index.html" class="nav-item"><span class="icon">🏠</span><span>الرئيسية</span></a>
-    <a href="search.html" class="nav-item active"><span class="icon">🔍</span><span>البحث</span></a>
-    <a href="https://gemini.google.com" target="_blank" class="nav-item"><span class="icon">✨</span><span>Gemini</span></a>
+    <a href="index.html" class="nav-item">
+      <span class="icon">🏠</span>
+      <span id="nav-home">الرئيسية</span>
+    </a>
+    <a href="search.html" class="nav-item active">
+      <span class="icon">🔍</span>
+      <span id="nav-search">البحث</span>
+    </a>
+    <a href="Settings.html" class="nav-item">
+      <span class="icon">⚙️</span>
+      <span id="nav-settings">الإعدادات</span>
+    </a>
   </nav>
 
   <script>
+    const translations = {
+      ar: { dir: "rtl", header: "Alislamiah-Tube", placeholder: "إبحث عن فيديو", btn: "بحث", home: "الرئيسية", search: "البحث", settings: "الإعدادات" },
+      fr: { dir: "ltr", header: "Alislamiah-Tube", placeholder: "Rechercher une vidéo...", btn: "Chercher", home: "Accueil", search: "Recherche", settings: "Paramètres" },
+      en: { dir: "ltr", header: "Alislamiah-Tube", placeholder: "Search for a video...", btn: "Search", home: "Home", search: "Search", settings: "Settings" }
+    };
+
+    let currentLang = localStorage.getItem("app_lang") || "ar";
+
+    function applyLanguage(lang) {
+      if (!translations[lang]) lang = "ar";
+      const t = translations[lang];
+
+      document.documentElement.setAttribute("lang", lang);
+      document.documentElement.setAttribute("dir", t.dir);
+
+      document.getElementById("header-title").textContent = t.header;
+      document.getElementById("searchInput").placeholder = t.placeholder;
+      document.getElementById("search-btn").textContent = t.btn;
+      document.getElementById("nav-home").textContent = t.home;
+      document.getElementById("nav-search").textContent = t.search;
+      document.getElementById("nav-settings").textContent = t.settings;
+    }
+
     function goSearch(){
       const q = document.getElementById('searchInput').value.trim();
-      if(q){
-        window.location.href = 'results.html?q=' + encodeURIComponent(q);
-      }
+      if(q){ window.location.href = 'results.html?q=' + encodeURIComponent(q); }
     }
     document.getElementById('searchInput').addEventListener('keypress', function(e){
       if(e.key === 'Enter') goSearch();
     });
+
+    applyLanguage(currentLang);
   </script>
 </body>
 </html>
