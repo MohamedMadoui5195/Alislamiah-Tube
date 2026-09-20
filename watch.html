@@ -3,84 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مشاهدة - Alislamiah-Tube</title>
-  <link rel="icon" href="assets/images/icon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>عرض الفيديو - Alislamiah-Tube</title>
+  <!-- استدعاء الأيقونة الصحيح من الواجهة مباشرة ✅ -->
+  <link rel="icon" href="icon.png" type="image/png">
+  <link href="https://googleapis.com" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Cairo',sans-serif;background:#0f0f0f;color:#fff;min-height:100vh;padding-bottom:80px}
     .header{background:#1a1a1a;padding:12px 20px;position:sticky;top:0;z-index:100;border-bottom:1px solid #333;display:flex;align-items:center;gap:12px}
     .app-icon{width:42px;height:42px;border-radius:10px;object-fit:cover}
     .header h1{font-size:1.4rem;font-weight:700;color:#4ade80}
-    .main-content{padding:20px;max-width:900px;margin:0 auto}
-    .player{width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-bottom:20px}
-    .player video{width:100%;height:100%;object-fit:contain}
-    .video-title{font-size:1.3rem;font-weight:700;margin-bottom:16px;line-height:1.4}
-    .actions{display:flex;gap:12px;margin-bottom:20px}
-    .btn{padding:10px 22px;border:none;border-radius:8px;font-family:'Cairo',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px}
-    .btn-like{background:#333;color:#fff}
-    .btn-like.liked{background:#4ade80;color:#000}
-    .btn-share{background:#333;color:#fff}
+    .main-content{padding:20px;max-width:800px;margin:0 auto}
+    
+    /* تنسيق مشغل الفيديو */
+    .video-container {width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-bottom:15px}
+    .video-container video {width:100%;height:100%;object-fit:contain}
+    
+    .video-title{font-size:1.3rem;font-weight:700;line-height:1.4;margin-bottom:8px;color:#fff}
+    .video-meta{font-size:0.9rem;color:#888;margin-bottom:20px}
+    
     .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #333;z-index:100}
     .nav-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#888;font-size:0.8rem;gap:4px}
+    .nav-item.active{color:#4ade80}
     .nav-item .icon{font-size:1.4rem}
   </style>
 </head>
 <body>
   <header class="header">
-    <img src="assets/images/icon.png" class="app-icon" alt="icon" onerror="this.style.display='none'">
+    <img src="icon.png" class="app-icon" alt="Alislamiah-Tube Icon">
     <h1>Alislamiah-Tube</h1>
   </header>
 
   <main class="main-content">
-    <div class="player">
-      <video id="mainVideo" controls autoplay></video>
+    <!-- مشغل الفيديو مع تفعيل أزرار التحكم والتشغيل التلقائي الذكي ✅ -->
+    <div class="video-container">
+      <video id="main-player" controls autoplay playsinline>
+        <source id="video-source" src="" type="video/mp4">
+        متصفحك لا يدعم تشغيل هذا الفيديو.
+      </video>
     </div>
-    <h2 class="video-title" id="videoTitle"></h2>
-    <div class="actions">
-      <button class="btn btn-like" id="likeBtn" onclick="toggleLike()">❤️ لايك</button>
-      <button class="btn btn-share" onclick="shareVideo()">📤 مشاركة</button>
-    </div>
+
+    <!-- عنوان الفيديو والناشر يتغيران تلقائياً ✅ -->
+    <h1 id="video-display-title" class="video-title">جاري تحميل الفيديو...</h1>
+    <div class="video-meta">منصة Alislamiah-Tube القياسية</div>
   </main>
 
   <nav class="bottom-nav">
     <a href="index.html" class="nav-item"><span class="icon">🏠</span><span>الرئيسية</span></a>
     <a href="search.html" class="nav-item"><span class="icon">🔍</span><span>البحث</span></a>
-    <a href="https://gemini.google.com" target="_blank" class="nav-item"><span class="icon">✨</span><span>Gemini</span></a>
+    <a href="https://google.com" target="_blank" class="nav-item"><span class="icon">✨</span><span>Gemini</span></a>
   </nav>
 
+  <!-- السكريبت المسؤول عن استقبال الفيديو وتغيير المحتوى ديناميكياً ✅ -->
   <script>
-    const videos = {
-      1: {file:"assets/videos/IMG_20260814_164242_861.mp4", title:"ما تيسر من سورة إبراهيم"},
-      2: {file:"assets/videos/lv_0_20260824111719.mp4", title:"آيات من سورة مريم بصوت مشاري راشد العفاسي"}
-    };
+    // 1. جلب اسم الفيديو والعنوان الممررين من الرابط
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoFile = urlParams.get('v');
+    const videoTitle = urlParams.get('title');
 
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('v');
-    const video = videos[id];
+    const player = document.getElementById('main-player');
+    const source = document.getElementById('video-source');
+    const titleElement = document.getElementById('video-display-title');
 
-    if (video) {
-      document.getElementById('mainVideo').src = video.file;
-      document.getElementById('videoTitle').textContent = video.title;
-      document.title = video.title + ' - Alislamiah-Tube';
+    // 2. تحديث مشغل الفيديو إذا كان الرابط يحتوي على ملف ميديا
+    if (videoFile) {
+        source.src = videoFile; // تعيين مسار ملف الـ mp4 المرفوع في الريبو مباشرة
+        player.load();          // تحديث المشغل بالملف الجديد
+        player.play().catch(error => {
+            console.log("المتصفح يمنع التشغيل التلقائي بصوت، يحتاج إلى كتم أو تفاعل من المستخدم أولاً.");
+        });
     } else {
-      document.getElementById('videoTitle').textContent = 'الفيديو غير موجود';
+        titleElement.innerText = "خطأ: لم يتم اختيار أي فيديو لعرضه!";
     }
 
-    function toggleLike() {
-      const btn = document.getElementById('likeBtn');
-      btn.classList.toggle('liked');
-      btn.innerHTML = btn.classList.contains('liked') ? '💚 تم الإعجاب' : '❤️ لايك';
-    }
-
-    function shareVideo() {
-      const title = document.getElementById('videoTitle').textContent;
-      if (navigator.share) {
-        navigator.share({title: title, text: title, url: window.location.href});
-      } else {
-        navigator.clipboard.writeText(title + ' - ' + window.location.href);
-        alert('تم نسخ الرابط');
-      }
+    // 3. تحديث نصوص العناوين وتبويب الموقع
+    if (videoTitle) {
+        const decodedTitle = decodeURIComponent(videoTitle);
+        titleElement.innerText = decodedTitle;
+        document.title = decodedTitle + " - Alislamiah-Tube";
     }
   </script>
 </body>
