@@ -13,21 +13,14 @@
     .app-icon{width:42px;height:42px;border-radius:10px;object-fit:cover}
     .header h1{font-size:1.4rem;font-weight:700;color:#4ade80}
     .main-content{padding:20px;max-width:800px;margin:0 auto}
-    
-    /* تنسيق مشغل الفيديو */
     .video-container {width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-bottom:15px}
     .video-container video {width:100%;height:100%;object-fit:contain}
-    
     .video-title{font-size:1.3rem;font-weight:700;line-height:1.4;margin-bottom:8px;color:#fff}
-    .video-meta{font-size:0.9rem;color:#888;margin-bottom:15px}
-    
-    /* قسم أزرار التفاعل (لايك، مشاركة) */
+    .video-meta{font-size:0.9rem;color:#888;margin-bottom:15px;display:flex;gap:15px}
     .actions-bar {display:flex;gap:15px;margin-bottom:25px;border-bottom:1px solid #333;padding-bottom:15px}
     .action-btn {background:#1a1a1a;color:#fff;border:1px solid #333;padding:8px 16px;border-radius:20px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.9rem;display:flex;align-items:center;gap:8px;transition:0.2s}
     .action-btn:hover {background:#262626;border-color:#4ade80}
-    .action-btn.liked {color:#4ade80;border-color:#4ade80}
-
-    /* قسم التعليقات المضاف حديثاً */
+    .action-btn.liked {color:#4ade80;border-color:#4ade80;background:#1e3a1e}
     .comments-section {margin-top:20px;background:#1a1a1a;padding:20px;border-radius:12px;border:1px solid #333}
     .comments-section h3 {font-size:1.1rem;margin-bottom:15px;color:#e5e5e5}
     .comment-form {display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
@@ -39,7 +32,6 @@
     .comment-item {background:#0f0f0f;padding:12px;border-radius:8px;border:1px solid #222}
     .comment-user {font-weight:700;font-size:0.85rem;color:#4ade80;margin-bottom:4px}
     .comment-text {font-size:0.9rem;color:#e5e5e5;line-height:1.4}
-    
     .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #333;z-index:100}
     .nav-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#888;font-size:0.8rem;gap:4px}
     .nav-item.active{color:#4ade80}
@@ -51,7 +43,6 @@
     <img src="icon.png" class="app-icon" alt="Alislamiah-Tube Icon">
     <h1>Alislamiah-Tube</h1>
   </header>
-
   <main class="main-content">
     <div class="video-container">
       <video id="main-player" controls autoplay playsinline>
@@ -61,19 +52,22 @@
     </div>
 
     <h1 id="video-display-title" class="video-title">جاري تحميل الفيديو...</h1>
-    <div class="video-meta">منصة Alislamiah-Tube القياسية</div>
+    
+    <div class="video-meta">
+      <span>منصة Alislamiah-Tube</span>
+      <span>•</span>
+      <span>👁️ <span id="view-count">0</span> مشاهدة</span>
+    </div>
 
-    <!-- 🌟 شريط التفاعل المحدث (إعجاب ومشاركة) -->
     <div class="actions-bar">
       <button class="action-btn" id="like-btn" onclick="toggleLike()">
         <span class="icon">👍</span> <span id="like-text">إعجاب</span> (<span id="like-count">0</span>)
       </button>
       <button class="action-btn" onclick="shareVideo()">
-        <span class="icon">🔄</span> مشاركة الفيديو
+        <span class="icon">🔄</span> مشاركة (<span id="share-count">0</span>)
       </button>
     </div>
 
-    <!-- 🌟 قسم صندوق التعليقات الجديد -->
     <div class="comments-section">
       <h3>التعليقات</h3>
       <div class="comment-form">
@@ -81,7 +75,6 @@
         <button class="comment-submit" onclick="addComment()">نشر التعليق</button>
       </div>
       <div class="comments-list" id="comments-box">
-        <!-- التعليقات ستظهر هنا برمجياً -->
         <div class="comment-item" id="empty-comment-msg">
           <div class="comment-text" style="color:#888; text-align:center;">لا توجد تعليقات بعد. كن أول من يعلق!</div>
         </div>
@@ -96,19 +89,29 @@
   </nav>
 
   <script>
-    // جلب قيم الفيديو والعنوان من رابط الـ URL
     const urlParams = new URLSearchParams(window.location.search);
-    const videoFile = urlParams.get('v');
+    const videoFile = urlParams.get('v') || 'default_video';
     const videoTitle = urlParams.get('title');
 
     const player = document.getElementById('main-player');
     const source = document.getElementById('video-source');
     const titleElement = document.getElementById('video-display-title');
 
-    if (videoFile) {
+    const LIKE_KEY = `liked_${videoFile}`;
+    const LIKE_COUNT_KEY = `likes_count_${videoFile}`;
+    const COMMENT_KEY = `comments_${videoFile}`;
+    const VIEW_KEY = `views_${videoFile}`;
+    const SHARE_KEY = `shares_${videoFile}`;
+
+    if (urlParams.get('v')) {
         source.src = videoFile;
         player.load();
-        player.play().catch(error => console.log("التشغيل التلقائي بانتظار تفاعل المستخدم."));
+        player.play().catch(error => console.log("تحتاج لتفاعل المستخدم."));
+        
+        let currentViews = parseInt(localStorage.getItem(VIEW_KEY)) || 0;
+        currentViews++;
+        localStorage.setItem(VIEW_KEY, currentViews);
+        document.getElementById('view-count').innerText = currentViews;
     } else {
         titleElement.innerText = "خطأ: لم يتم اختيار أي فيديو لعرضه!";
     }
@@ -119,66 +122,79 @@
         document.title = decodedTitle + " - Alislamiah-Tube";
     }
 
-    // 🛠️ ميزة الإعجاب التفاعلية
-    let isLiked = false;
-    let likes = 0;
+    let isLiked = localStorage.getItem(LIKE_KEY) === 'true';
+    let likesCount = parseInt(localStorage.getItem(LIKE_COUNT_KEY)) || 0;
+    let sharesCount = parseInt(localStorage.getItem(SHARE_KEY)) || 0;
+
+    document.getElementById('like-count').innerText = likesCount;
+    document.getElementById('share-count').innerText = sharesCount;
+    if(isLiked) {
+        document.getElementById('like-btn').classList.add('liked');
+        document.getElementById('like-text').innerText = "تم الإعجاب";
+    }
+
+    const savedComments = JSON.parse(localStorage.getItem(COMMENT_KEY)) || [];
+    const commentsBox = document.getElementById('comments-box');
+    if (savedComments.length > 0) {
+        document.getElementById('empty-comment-msg').style.display = 'none';
+        savedComments.forEach(text => {
+            const commentItem = document.createElement('div');
+            commentItem.className = 'comment-item';
+            commentItem.style.marginBottom = '12px';
+            commentItem.innerHTML = `<div class="comment-user">متابع المنصة</div><div class="comment-text">${text}</div>`;
+            commentsBox.appendChild(commentItem);
+        });
+    }
+
     function toggleLike() {
         const likeBtn = document.getElementById('like-btn');
-        const likeCount = document.getElementById('like-count');
+        const likeCountElement = document.getElementById('like-count');
         const likeText = document.getElementById('like-text');
-        
         isLiked = !isLiked;
-        likes = isLiked ? 1 : 0;
-        
-        likeCount.innerText = likes;
         if(isLiked) {
+            likesCount++;
             likeBtn.classList.add('liked');
             likeText.innerText = "تم الإعجاب";
         } else {
+            likesCount--;
             likeBtn.classList.remove('liked');
             likeText.innerText = "إعجاب";
         }
+        likeCountElement.innerText = likesCount;
+        localStorage.setItem(LIKE_KEY, isLiked);
+        localStorage.setItem(LIKE_COUNT_KEY, likesCount);
     }
 
-    // 🛠️ ميزة مشاركة الرابط
     function shareVideo() {
+        sharesCount++;
+        localStorage.setItem(SHARE_KEY, sharesCount);
+        document.getElementById('share-count').innerText = sharesCount;
         if (navigator.share) {
-            navigator.share({
-                title: document.title,
-                url: window.location.href
-            }).catch(console.error);
+            navigator.share({ title: document.title, url: window.location.href }).catch(console.error);
         } else {
             navigator.clipboard.writeText(window.location.href);
             alert("تم نسخ رابط الفيديو بنجاح لمشاركته!");
         }
     }
 
-    // 🛠️ ميزة إضافة ونشر التعليق ديناميكياً
     function addComment() {
         const input = document.getElementById('comment-text-input');
-        const commentsBox = document.getElementById('comments-box');
         const emptyMsg = document.getElementById('empty-comment-msg');
-        
-        if (input.value.trim() === "") {
+        const commentText = input.value.trim();
+        if (commentText === "") {
             alert("فضلاً اكتب تعليقاً أولاً.");
             return;
         }
-
-        if (emptyMsg) {
-            emptyMsg.remove(); // إزالة رسالة "لا توجد تعليقات"
-        }
-
-        // إنشاء هيكل التعليق الجديد
+        if (emptyMsg) emptyMsg.style.display = 'none';
         const commentItem = document.createElement('div');
         commentItem.className = 'comment-item';
-        
-        commentItem.innerHTML = `
-          <div class="comment-user">متابع المنصة</div>
-          <div class="comment-text">${input.value.replace(/\n/g, '<br>')}</div>
-        `;
-        
-        commentsBox.insertBefore(commentItem, commentsBox.firstChild); // وضع التعليق الجديد في الأعلى
-        input.value = ""; // تفريغ الخانة بعد النشر
+        commentItem.style.marginBottom = '12px';
+        const formattedText = commentText.replace(/\n/g, '<br>');
+        commentItem.innerHTML = `<div class="comment-user">متابع المنصة</div><div class="comment-text">${formattedText}</div>`;
+        commentsBox.insertBefore(commentItem, commentsBox.firstChild);
+        savedComments.unshift(formattedText);
+        localStorage.setItem(COMMENT_KEY, JSON.stringify(savedComments));
+        input.value = ""; 
     }
   </script>
 </body>
