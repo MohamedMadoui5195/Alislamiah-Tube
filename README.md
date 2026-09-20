@@ -79,7 +79,71 @@
           <div class="video-meta">Alislamiah-Tube</div>
         </div>
       </a>
+      <!-- فيديو 4: فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية (1) -->
+      <a href="watch.html?v=فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية (1).mp4&title=فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية (1)" class="video-card">
+        <div class="video-thumbnail">
+          <video preload="metadata" muted autoplay loop playsinline>
+            <source src="فرض الفصل الثالث سنة ثالثة متوسط in العلوم الفيزيائية (1).mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-info">
+          <div class="video-title">فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية (1)</div>
+          <div class="video-meta">Alislamiah-Tube</div>
+        </div>
+      </a>
 
+      <!-- فيديو 5: فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية -->
+      <a href="watch.html?v=فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية.mp4&title=فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية" class="video-card">
+        <div class="video-thumbnail">
+          <video preload="metadata" muted autoplay loop playsinline>
+            <source src="فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-info">
+          <div class="video-title">فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية</div>
+          <div class="video-meta">Alislamiah-Tube</div>
+        </div>
+      </a>
+
+      <!-- فيديو 6: فرض الفصل الثالث في ماده العلوم الفيزيائيه السنه اولى متوسط -->
+      <a href="watch.html?v=فرض الفصل الثالث في ماده العلوم الفيزيائيه السنه اولى متوسط.mp4&title=فرض الفصل الثالث في مادة العلوم الفيزيائية السنة الأولى متوسط" class="video-card">
+        <div class="video-thumbnail">
+          <video preload="metadata" muted autoplay loop playsinline>
+            <source src="فرض الفصل الثالث في ماده العلوم الفيزيائيه السنه اولى متوسط.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-info">
+          <div class="video-title">فرض الفصل الثالث في مادة العلوم الفيزيائية السنة الأولى متوسط</div>
+          <div class="video-meta">Alislamiah-Tube</div>
+        </div>
+      </a>
+
+      <!-- فيديو 7: نموذج مقترح فرض الفصل الثالث سنة ثالثة متوسط -->
+      <a href="watch.html?v=نموذج مقترح فرض الفصل الثالث سنة ثالثة متوسط.mp4&title=نموذج مقترح فرض الفصل الثالث سنة ثالثة متوسط" class="video-card">
+        <div class="video-thumbnail">
+          <video preload="metadata" muted autoplay loop playsinline>
+            <source src="نموذج مقترح فرض الفصل الثالث سنة ثالثة متوسط.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-info">
+          <div class="video-title">نموذج مقترح فرض الفصل الثالث سنة ثالثة متوسط</div>
+          <div class="video-meta">Alislamiah-Tube</div>
+        </div>
+      </a>
+
+      <!-- فيديو 8: شرح درس الخطاب المباشر والغير مباشر مكتوب -->
+      <a href="watch.html?v=شرح درس الخطاب المباشر والغير مباشر مكتوب.mp4&title=شرح درس الخطاب المباشر والغير مباشر مكتوب" class="video-card">
+        <div class="video-thumbnail">
+          <video preload="metadata" muted autoplay loop playsinline>
+            <source src="شرح درس الخطاب المباشر والغير مباشر مكتوب.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-info">
+          <div class="video-title">شرح درس الخطاب المباشر والغير مباشر مكتوب</div>
+          <div class="video-meta">Alislamiah-Tube</div>
+        </div>
+      </a>
+      
 
     </div>
   </main>
