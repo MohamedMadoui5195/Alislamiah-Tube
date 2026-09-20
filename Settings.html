@@ -1,343 +1,653 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>الإعدادات - Alislamiah</title><style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>الإعدادات - Alislamiah-Tube</title>  <link rel="icon" href="icon.png" type="image/png">  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-body{
-    font-family:Arial, "Segoe UI", sans-serif;
-    background:#061329;
-    color:#fff;
-    min-height:100vh;
-}
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #07111f;
+      color: #fff;
+      min-height: 100vh;
+      padding-bottom: 90px;
+    }
 
-/* Header */
-.header{
-    height:72px;
-    display:flex;
-    align-items:center;
-    padding:0 20px;
-    background:#071a38;
-    border-bottom:1px solid rgba(255,255,255,.08);
-    position:sticky;
-    top:0;
-    z-index:10;
-}
+    /* الهيدر */
+    .header {
+      background: #0a1728;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #18304b;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-.header h1{
-    font-size:22px;
-    font-weight:700;
-}
+    .app-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
 
-/* Main */
-.container{
-    max-width:700px;
-    margin:auto;
-    padding:25px 16px 40px;
-}
+    .header h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #6fb7ff;
+    }
 
-.section-title{
-    font-size:13px;
-    color:#7894bc;
-    margin:10px 8px;
-    font-weight:bold;
-}
+    /* المحتوى */
+    .main-content {
+      padding: 24px 16px 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-/* Settings card */
-.settings-card{
-    background:#0a1d3b;
-    border:1px solid rgba(80,130,210,.18);
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 8px 30px rgba(0,0,0,.20);
-}
+    .page-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 7px;
+      color: #ffffff;
+    }
 
-/* Setting item */
-.setting{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    min-height:72px;
-    padding:15px 18px;
-    cursor:pointer;
-    transition:background .2s;
-}
+    .page-description {
+      color: #7890aa;
+      font-size: 0.88rem;
+      margin-bottom: 25px;
+    }
 
-.setting:hover{
-    background:#0d2549;
-}
+    /* عنوان المجموعة */
+    .section-title {
+      color: #7090b0;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin: 0 6px 9px;
+    }
 
-.setting + .setting{
-    border-top:1px solid rgba(255,255,255,.07);
-}
+    /* بطاقة الإعدادات */
+    .settings-card {
+      background: #0b1a2c;
+      border: 1px solid #173553;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    }
 
-.setting-info{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
+    /* عنصر */
+    .setting-item {
+      min-height: 76px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      border-bottom: 1px solid #152c45;
+      cursor: pointer;
+    }
 
-.icon{
-    width:43px;
-    height:43px;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#102b55;
-    color:#63a4ff;
-    font-size:21px;
-    flex-shrink:0;
-}
+    .setting-item:last-child {
+      border-bottom: none;
+    }
 
-.setting-text{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
-}
+    .setting-item:active {
+      background: #102640;
+    }
 
-.setting-title{
-    font-size:16px;
-    font-weight:600;
-}
+    /* الأيقونة */
+    .setting-icon {
+      width: 45px;
+      height: 45px;
+      min-width: 45px;
+      border-radius: 13px;
+      background: #0d2946;
+      border: 1px solid #1c4b76;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 14px;
+      color: #69b5ff;
+    }
 
-.setting-subtitle{
-    font-size:12px;
-    color:#7f96b8;
-}
+    html[dir="ltr"] .setting-icon {
+      margin-left: 0;
+      margin-right: 14px;
+    }
 
-/* Arrow */
-.arrow{
-    font-size:22px;
-    color:#6683a9;
-}
+    .setting-icon svg {
+      width: 22px;
+      height: 22px;
+    }
 
-/* Language */
-.language-options{
-    display:flex;
-    gap:8px;
-    direction:ltr;
-}
+    /* النص */
+    .setting-content {
+      flex: 1;
+    }
 
-.language{
-    border:1px solid #27456f;
-    background:#091b37;
-    color:#a9bddb;
-    padding:8px 13px;
-    border-radius:10px;
-    font-size:13px;
-    cursor:pointer;
-    transition:.2s;
-}
+    .setting-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #f5f9ff;
+      margin-bottom: 5px;
+    }
 
-.language.active{
-    background:#1769d2;
-    border-color:#3285ed;
-    color:white;
-}
+    .setting-description {
+      font-size: 0.78rem;
+      color: #718ba6;
+      line-height: 1.5;
+    }
 
-/* Footer */
-.footer{
-    text-align:center;
-    color:#506987;
-    font-size:12px;
-    margin-top:35px;
-    line-height:1.8;
-}
-</style></head><body><header class="header">
-    <h1 id="pageTitle">الإعدادات</h1>
-</header><main class="container"><div class="section-title" id="generalTitle">
-    عام
+    /* السهم */
+    .arrow {
+      color: #55718d;
+      font-size: 1.5rem;
+      line-height: 1;
+      transform: rotate(180deg);
+    }
+
+    html[dir="ltr"] .arrow {
+      transform: rotate(0deg);
+    }
+
+    /* اللغة */
+    .language-header {
+      cursor: pointer;
+    }
+
+    .language-options {
+      display: none;
+      padding: 0 15px 15px;
+      border-bottom: 1px solid #152c45;
+    }
+
+    .language-options.show {
+      display: block;
+    }
+
+    .language-option {
+      min-height: 52px;
+      margin-top: 8px;
+      padding: 0 14px;
+      border-radius: 11px;
+      border: 1px solid #173553;
+      background: #081628;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .language-option:active {
+      background: #102640;
+    }
+
+    .language-name {
+      font-size: 0.9rem;
+      color: #dcecff;
+    }
+
+    .language-check {
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      border: 2px solid #47647f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .language-option.active .language-check {
+      border-color: #4da8ff;
+      background: #1678c9;
+    }
+
+    .language-option.active .language-check::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    /* القائمة السفلية */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #081525;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #17304a;
+      z-index: 100;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #718096;
+      font-size: 0.78rem;
+      gap: 4px;
+      min-width: 70px;
+    }
+
+    .nav-item.active {
+      color: #62b4ff;
+    }
+
+    .nav-item .icon {
+      font-size: 1.35rem;
+    }
+
+    /* حقوق */
+    .footer {
+      text-align: center;
+      color: #526b84;
+      font-size: 0.72rem;
+      line-height: 1.8;
+      margin-top: 32px;
+    }
+
+    .footer strong {
+      color: #7399bc;
+    }
+
+    @media (min-width: 700px) {
+      .main-content {
+        padding-top: 35px;
+      }
+    }
+  </style></head><body>  <!-- الهيدر -->  <header class="header">
+    <img src="icon.png" class="app-icon" alt="Alislamiah">
+    <h1 id="header-title">Alislamiah-Tube</h1>
+  </header>  <main class="main-content"><h2 class="page-title" id="page-title">الإعدادات</h2>
+
+<p class="page-description" id="page-description">
+  تخصيص التطبيق والوصول إلى خدمات الإسلامية
+</p>
+
+
+<!-- المعلومات والخدمات -->
+<div class="section-title" id="info-section">
+  المعلومات والخدمات
 </div>
 
 <div class="settings-card">
 
-    <!-- About -->
-    <div class="setting" onclick="openAbout()">
+  <!-- عن Alislamiah -->
+  <a
+    href="https://mohamedmadoui5195.github.io/Alislamiah-_net/about.html"
+    class="setting-item"
+  >
 
-        <div class="setting-info">
-
-            <div class="icon">ⓘ</div>
-
-            <div class="setting-text">
-                <div class="setting-title" id="aboutTitle">
-                    عن Alislamiah
-                </div>
-
-                <div class="setting-subtitle" id="aboutSubtitle">
-                    معلومات عن Alislamiah
-                </div>
-            </div>
-
-        </div>
-
-        <div class="arrow">‹</div>
-
+    <div class="setting-icon">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor"
+           stroke-width="2"
+           stroke-linecap="round"
+           stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <line x1="12" y1="10" x2="12" y2="16"></line>
+        <circle cx="12" cy="7" r="1" fill="currentColor"></circle>
+      </svg>
     </div>
 
+    <div class="setting-content">
+      <div class="setting-title" id="about-title">
+        عن Alislamiah
+      </div>
 
-    <!-- Language -->
-    <div class="setting">
-
-        <div class="setting-info">
-
-            <div class="icon">文</div>
-
-            <div class="setting-text">
-                <div class="setting-title" id="languageTitle">
-                    لغة التطبيق
-                </div>
-
-                <div class="setting-subtitle" id="languageSubtitle">
-                    اختر لغة التطبيق
-                </div>
-            </div>
-
-        </div>
-
-        <div class="language-options">
-
-            <button
-                class="language"
-                id="englishBtn"
-                onclick="setLanguage('en')">
-                English
-            </button>
-
-            <button
-                class="language"
-                id="arabicBtn"
-                onclick="setLanguage('ar')">
-                العربية
-            </button>
-
-        </div>
-
+      <div class="setting-description" id="about-description">
+        تعرف على Alislamiah ومعلومات عنها
+      </div>
     </div>
+
+    <span class="arrow">›</span>
+
+  </a>
+
+
+  <!-- خدمات الإسلامية الرقمية -->
+  <a
+    href="https://mohamedmadoui5195.github.io/Alislamiah-services/"
+    class="setting-item"
+  >
+
+    <div class="setting-icon">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor"
+           stroke-width="2"
+           stroke-linecap="round"
+           stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+      </svg>
+    </div>
+
+    <div class="setting-content">
+      <div class="setting-title" id="services-title">
+        خدمات الإسلامية الرقمية
+      </div>
+
+      <div class="setting-description" id="services-description">
+        الوصول إلى خدمات ومنصات الإسلامية الرقمية
+      </div>
+    </div>
+
+    <span class="arrow">›</span>
+
+  </a>
 
 </div>
+
+
+<!-- التطبيق -->
+<div class="section-title" id="app-section">
+  التطبيق
+</div>
+
+<div class="settings-card">
+
+  <!-- اللغة -->
+  <div
+    class="setting-item language-header"
+    onclick="toggleLanguages()"
+  >
+
+    <div class="setting-icon">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor"
+           stroke-width="2"
+           stroke-linecap="round"
+           stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <path d="M12 3c-2.4 2.4-3.7 5.5-3.7 9s1.3 6.6 3.7 9"></path>
+        <path d="M12 3c2.4 2.4 3.7 5.5 3.7 9s-1.3 6.6-3.7 9"></path>
+      </svg>
+    </div>
+
+    <div class="setting-content">
+
+      <div class="setting-title" id="language-title">
+        لغة التطبيق
+      </div>
+
+      <div
+        class="setting-description"
+        id="selected-language"
+      >
+        العربية
+      </div>
+
+    </div>
+
+    <span class="arrow" id="language-arrow">›</span>
+
+  </div>
+
+
+  <!-- خيارات اللغة -->
+  <div
+    class="language-options"
+    id="language-options"
+  >
+
+    <div
+      class="language-option"
+      data-lang="ar"
+      onclick="selectLanguage('ar')"
+    >
+      <span class="language-name">العربية</span>
+      <span class="language-check"></span>
+    </div>
+
+    <div
+      class="language-option"
+      data-lang="fr"
+      onclick="selectLanguage('fr')"
+    >
+      <span class="language-name">Français</span>
+      <span class="language-check"></span>
+    </div>
+
+    <div
+      class="language-option"
+      data-lang="en"
+      onclick="selectLanguage('en')"
+    >
+      <span class="language-name">English</span>
+      <span class="language-check"></span>
+    </div>
+
+  </div>
+
+</div>
+
 
 <div class="footer">
-    <div id="footerText">Alislamiah</div>
-    <div>© 2026</div>
+  <strong>Alislamiah-Tube</strong><br>
+  <span id="footer-text">الإسلامية دائماً الأفضل</span>
 </div>
 
-</main><script>
+  </main>  <!-- القائمة السفلية -->  <nav class="bottom-nav"><a href="index.html" class="nav-item">
+  <span class="icon">🏠</span>
+  <span id="nav-home">الرئيسية</span>
+</a>
 
-/* =========================
-   About Alislamiah
-========================= */
+<a href="search.html" class="nav-item">
+  <span class="icon">🔍</span>
+  <span id="nav-search">البحث</span>
+</a>
 
-function openAbout(){
-    window.location.href =
-    "https://mohamedmadoui5195.github.io/Alislamiah-_net/about.html";
-}
+<a href="Settings.html" class="nav-item active">
+  <span class="icon">⚙️</span>
+  <span id="nav-settings">الإعدادات</span>
+</a>
+
+  </nav>  <script>
+
+    /*
+      نفس نظام اللغة الموجود في index.html
+      المفتاح المستخدم:
+      app_lang
+    */
+
+    const translations = {
+
+      ar: {
+        dir: "rtl",
+        header: "Alislamiah-Tube",
+        pageTitle: "الإعدادات",
+        pageDescription: "تخصيص التطبيق والوصول إلى خدمات الإسلامية",
+        infoSection: "المعلومات والخدمات",
+
+        aboutTitle: "عن Alislamiah",
+        aboutDescription: "تعرف على Alislamiah ومعلومات عنها",
+
+        servicesTitle: "خدمات الإسلامية الرقمية",
+        servicesDescription: "الوصول إلى خدمات ومنصات الإسلامية الرقمية",
+
+        appSection: "التطبيق",
+        languageTitle: "لغة التطبيق",
+
+        home: "الرئيسية",
+        search: "البحث",
+        settings: "الإعدادات",
+
+        footer: "الإسلامية دائماً الأفضل",
+
+        selectedLanguage: "العربية"
+      },
+
+      fr: {
+        dir: "ltr",
+        header: "Alislamiah-Tube",
+        pageTitle: "Paramètres",
+        pageDescription: "Personnaliser l'application et accéder aux services Alislamiah",
+        infoSection: "Informations et services",
+
+        aboutTitle: "À propos d'Alislamiah",
+        aboutDescription: "Découvrez Alislamiah et ses informations",
+
+        servicesTitle: "Services numériques Alislamiah",
+        servicesDescription: "Accédez aux services et plateformes numériques Alislamiah",
+
+        appSection: "Application",
+        languageTitle: "Langue de l'application",
+
+        home: "Accueil",
+        search: "Recherche",
+        settings: "Paramètres",
+
+        footer: "Alislamiah, toujours le meilleur",
+
+        selectedLanguage: "Français"
+      },
+
+      en: {
+        dir: "ltr",
+        header: "Alislamiah-Tube",
+        pageTitle: "Settings",
+        pageDescription: "Customize the app and access Alislamiah services",
+        infoSection: "Information & Services",
+
+        aboutTitle: "About Alislamiah",
+        aboutDescription: "Learn more about Alislamiah",
+
+        servicesTitle: "Alislamiah Digital Services",
+        servicesDescription: "Access Alislamiah digital services and platforms",
+
+        appSection: "Application",
+        languageTitle: "App language",
+
+        home: "Home",
+        search: "Search",
+        settings: "Settings",
+
+        footer: "Alislamiah, always the best",
+
+        selectedLanguage: "English"
+      }
+
+    };
 
 
-/* =========================
-   Translations
-========================= */
+    /*
+      اللغة المحفوظة في التطبيق
+      متوافقة مباشرة مع index.html
+    */
+    let currentLang = localStorage.getItem("app_lang") || "ar";
 
-const translations = {
 
-    ar:{
-        pageTitle:"الإعدادات",
-        generalTitle:"عام",
-        aboutTitle:"عن Alislamiah",
-        aboutSubtitle:"معلومات عن Alislamiah",
-        languageTitle:"لغة التطبيق",
-        languageSubtitle:"اختر لغة التطبيق",
-        footer:"Alislamiah"
-    },
+    function applyLanguage(lang) {
 
-    en:{
-        pageTitle:"Settings",
-        generalTitle:"General",
-        aboutTitle:"About Alislamiah",
-        aboutSubtitle:"Information about Alislamiah",
-        languageTitle:"App language",
-        languageSubtitle:"Choose your app language",
-        footer:"Alislamiah"
+      if (!translations[lang]) {
+        lang = "ar";
+      }
+
+      currentLang = lang;
+
+      const t = translations[lang];
+
+      document.documentElement.setAttribute("lang", lang);
+      document.documentElement.setAttribute("dir", t.dir);
+
+      document.getElementById("header-title").textContent = t.header;
+      document.getElementById("page-title").textContent = t.pageTitle;
+      document.getElementById("page-description").textContent = t.pageDescription;
+
+      document.getElementById("info-section").textContent = t.infoSection;
+
+      document.getElementById("about-title").textContent = t.aboutTitle;
+      document.getElementById("about-description").textContent = t.aboutDescription;
+
+      document.getElementById("services-title").textContent = t.servicesTitle;
+      document.getElementById("services-description").textContent = t.servicesDescription;
+
+      document.getElementById("app-section").textContent = t.appSection;
+      document.getElementById("language-title").textContent = t.languageTitle;
+
+      document.getElementById("selected-language").textContent = t.selectedLanguage;
+
+      document.getElementById("nav-home").textContent = t.home;
+      document.getElementById("nav-search").textContent = t.search;
+      document.getElementById("nav-settings").textContent = t.settings;
+
+      document.getElementById("footer-text").textContent = t.footer;
+
+      /*
+        تحديد اللغة الحالية
+      */
+      document.querySelectorAll(".language-option").forEach(function(option) {
+
+        if (option.dataset.lang === lang) {
+          option.classList.add("active");
+        } else {
+          option.classList.remove("active");
+        }
+
+      });
     }
 
-};
 
+    /*
+      فتح وإغلاق قائمة اللغات
+    */
+    function toggleLanguages() {
 
-/* =========================
-   Change Language
-========================= */
+      const options =
+        document.getElementById("language-options");
 
-function setLanguage(language){
+      const arrow =
+        document.getElementById("language-arrow");
 
-    /* Save language */
-    localStorage.setItem("alislamiah_language", language);
+      options.classList.toggle("show");
 
-    applyLanguage(language);
-}
-
-
-/* =========================
-   Apply Language
-========================= */
-
-function applyLanguage(language){
-
-    const t = translations[language];
-
-    if(!t) return;
-
-    document.documentElement.lang = language;
-
-    if(language === "ar"){
-        document.documentElement.dir = "rtl";
-    }else{
-        document.documentElement.dir = "ltr";
+      if (options.classList.contains("show")) {
+        arrow.textContent = "⌄";
+      } else {
+        arrow.textContent = "›";
+      }
     }
 
-    document.getElementById("pageTitle").textContent =
-        t.pageTitle;
 
-    document.getElementById("generalTitle").textContent =
-        t.generalTitle;
+    /*
+      اختيار اللغة
+    */
+    function selectLanguage(lang) {
 
-    document.getElementById("aboutTitle").textContent =
-        t.aboutTitle;
+      localStorage.setItem("app_lang", lang);
 
-    document.getElementById("aboutSubtitle").textContent =
-        t.aboutSubtitle;
+      applyLanguage(lang);
 
-    document.getElementById("languageTitle").textContent =
-        t.languageTitle;
+      document
+        .getElementById("language-options")
+        .classList.remove("show");
 
-    document.getElementById("languageSubtitle").textContent =
-        t.languageSubtitle;
-
-    document.getElementById("footerText").textContent =
-        t.footer;
+      document
+        .getElementById("language-arrow")
+        .textContent = "›";
+    }
 
 
-    /* Active button */
+    /*
+      تشغيل اللغة المحفوظة عند فتح Settings.html
+    */
+    applyLanguage(currentLang);
 
-    document.getElementById("englishBtn")
-        .classList.toggle("active", language === "en");
-
-    document.getElementById("arabicBtn")
-        .classList.toggle("active", language === "ar");
-}
-
-
-/* =========================
-   Load Saved Language
-========================= */
-
-const savedLanguage =
-    localStorage.getItem("alislamiah_language") || "ar";
-
-applyLanguage(savedLanguage);
-
-</script></body>
+  </script></body>
 </html>
