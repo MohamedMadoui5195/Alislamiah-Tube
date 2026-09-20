@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>عرض الفيديو - Alislamiah-Tube</title>
-  <!-- استدعاء الأيقونة الصحيح من الواجهة مباشرة ✅ -->
   <link rel="icon" href="icon.png" type="image/png">
   <link href="https://googleapis.com" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Cairo',sans-serif;background:#0f0f0f;color:#fff;min-height:100vh;padding-bottom:80px}
+    body{font-family:'Cairo',sans-serif;background:#0f0f0f;color:#fff;min-height:100vh;padding-bottom:100px}
     .header{background:#1a1a1a;padding:12px 20px;position:sticky;top:0;z-index:100;border-bottom:1px solid #333;display:flex;align-items:center;gap:12px}
     .app-icon{width:42px;height:42px;border-radius:10px;object-fit:cover}
     .header h1{font-size:1.4rem;font-weight:700;color:#4ade80}
@@ -20,7 +19,26 @@
     .video-container video {width:100%;height:100%;object-fit:contain}
     
     .video-title{font-size:1.3rem;font-weight:700;line-height:1.4;margin-bottom:8px;color:#fff}
-    .video-meta{font-size:0.9rem;color:#888;margin-bottom:20px}
+    .video-meta{font-size:0.9rem;color:#888;margin-bottom:15px}
+    
+    /* قسم أزرار التفاعل (لايك، مشاركة) */
+    .actions-bar {display:flex;gap:15px;margin-bottom:25px;border-bottom:1px solid #333;padding-bottom:15px}
+    .action-btn {background:#1a1a1a;color:#fff;border:1px solid #333;padding:8px 16px;border-radius:20px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.9rem;display:flex;align-items:center;gap:8px;transition:0.2s}
+    .action-btn:hover {background:#262626;border-color:#4ade80}
+    .action-btn.liked {color:#4ade80;border-color:#4ade80}
+
+    /* قسم التعليقات المضاف حديثاً */
+    .comments-section {margin-top:20px;background:#1a1a1a;padding:20px;border-radius:12px;border:1px solid #333}
+    .comments-section h3 {font-size:1.1rem;margin-bottom:15px;color:#e5e5e5}
+    .comment-form {display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+    .comment-input {background:#0f0f0f;border:1px solid #333;color:#fff;padding:12px;border-radius:8px;font-family:'Cairo',sans-serif;resize:none;font-size:0.9rem}
+    .comment-input:focus {outline:none;border-color:#4ade80}
+    .comment-submit {background:#4ade80;color:#0f0f0f;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:700;font-family:'Cairo',sans-serif;align-self:flex-end;transition:0.2s}
+    .comment-submit:hover {background:#3bbd6c}
+    .comments-list {display:flex;flex-direction:column;gap:12px}
+    .comment-item {background:#0f0f0f;padding:12px;border-radius:8px;border:1px solid #222}
+    .comment-user {font-weight:700;font-size:0.85rem;color:#4ade80;margin-bottom:4px}
+    .comment-text {font-size:0.9rem;color:#e5e5e5;line-height:1.4}
     
     .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #333;z-index:100}
     .nav-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#888;font-size:0.8rem;gap:4px}
@@ -35,7 +53,6 @@
   </header>
 
   <main class="main-content">
-    <!-- مشغل الفيديو مع تفعيل أزرار التحكم والتشغيل التلقائي الذكي ✅ -->
     <div class="video-container">
       <video id="main-player" controls autoplay playsinline>
         <source id="video-source" src="" type="video/mp4">
@@ -43,9 +60,33 @@
       </video>
     </div>
 
-    <!-- عنوان الفيديو والناشر يتغيران تلقائياً ✅ -->
     <h1 id="video-display-title" class="video-title">جاري تحميل الفيديو...</h1>
     <div class="video-meta">منصة Alislamiah-Tube القياسية</div>
+
+    <!-- 🌟 شريط التفاعل المحدث (إعجاب ومشاركة) -->
+    <div class="actions-bar">
+      <button class="action-btn" id="like-btn" onclick="toggleLike()">
+        <span class="icon">👍</span> <span id="like-text">إعجاب</span> (<span id="like-count">0</span>)
+      </button>
+      <button class="action-btn" onclick="shareVideo()">
+        <span class="icon">🔄</span> مشاركة الفيديو
+      </button>
+    </div>
+
+    <!-- 🌟 قسم صندوق التعليقات الجديد -->
+    <div class="comments-section">
+      <h3>التعليقات</h3>
+      <div class="comment-form">
+        <textarea id="comment-text-input" class="comment-input" rows="3" placeholder="اكتب تعليقاً إسلامياً طيباً..."></textarea>
+        <button class="comment-submit" onclick="addComment()">نشر التعليق</button>
+      </div>
+      <div class="comments-list" id="comments-box">
+        <!-- التعليقات ستظهر هنا برمجياً -->
+        <div class="comment-item" id="empty-comment-msg">
+          <div class="comment-text" style="color:#888; text-align:center;">لا توجد تعليقات بعد. كن أول من يعلق!</div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <nav class="bottom-nav">
@@ -54,9 +95,8 @@
     <a href="https://google.com" target="_blank" class="nav-item"><span class="icon">✨</span><span>Gemini</span></a>
   </nav>
 
-  <!-- السكريبت المسؤول عن استقبال الفيديو وتغيير المحتوى ديناميكياً ✅ -->
   <script>
-    // 1. جلب اسم الفيديو والعنوان الممررين من الرابط
+    // جلب قيم الفيديو والعنوان من رابط الـ URL
     const urlParams = new URLSearchParams(window.location.search);
     const videoFile = urlParams.get('v');
     const videoTitle = urlParams.get('title');
@@ -65,22 +105,80 @@
     const source = document.getElementById('video-source');
     const titleElement = document.getElementById('video-display-title');
 
-    // 2. تحديث مشغل الفيديو إذا كان الرابط يحتوي على ملف ميديا
     if (videoFile) {
-        source.src = videoFile; // تعيين مسار ملف الـ mp4 المرفوع في الريبو مباشرة
-        player.load();          // تحديث المشغل بالملف الجديد
-        player.play().catch(error => {
-            console.log("المتصفح يمنع التشغيل التلقائي بصوت، يحتاج إلى كتم أو تفاعل من المستخدم أولاً.");
-        });
+        source.src = videoFile;
+        player.load();
+        player.play().catch(error => console.log("التشغيل التلقائي بانتظار تفاعل المستخدم."));
     } else {
         titleElement.innerText = "خطأ: لم يتم اختيار أي فيديو لعرضه!";
     }
 
-    // 3. تحديث نصوص العناوين وتبويب الموقع
     if (videoTitle) {
         const decodedTitle = decodeURIComponent(videoTitle);
         titleElement.innerText = decodedTitle;
         document.title = decodedTitle + " - Alislamiah-Tube";
+    }
+
+    // 🛠️ ميزة الإعجاب التفاعلية
+    let isLiked = false;
+    let likes = 0;
+    function toggleLike() {
+        const likeBtn = document.getElementById('like-btn');
+        const likeCount = document.getElementById('like-count');
+        const likeText = document.getElementById('like-text');
+        
+        isLiked = !isLiked;
+        likes = isLiked ? 1 : 0;
+        
+        likeCount.innerText = likes;
+        if(isLiked) {
+            likeBtn.classList.add('liked');
+            likeText.innerText = "تم الإعجاب";
+        } else {
+            likeBtn.classList.remove('liked');
+            likeText.innerText = "إعجاب";
+        }
+    }
+
+    // 🛠️ ميزة مشاركة الرابط
+    function shareVideo() {
+        if (navigator.share) {
+            navigator.share({
+                title: document.title,
+                url: window.location.href
+            }).catch(console.error);
+        } else {
+            navigator.clipboard.writeText(window.location.href);
+            alert("تم نسخ رابط الفيديو بنجاح لمشاركته!");
+        }
+    }
+
+    // 🛠️ ميزة إضافة ونشر التعليق ديناميكياً
+    function addComment() {
+        const input = document.getElementById('comment-text-input');
+        const commentsBox = document.getElementById('comments-box');
+        const emptyMsg = document.getElementById('empty-comment-msg');
+        
+        if (input.value.trim() === "") {
+            alert("فضلاً اكتب تعليقاً أولاً.");
+            return;
+        }
+
+        if (emptyMsg) {
+            emptyMsg.remove(); // إزالة رسالة "لا توجد تعليقات"
+        }
+
+        // إنشاء هيكل التعليق الجديد
+        const commentItem = document.createElement('div');
+        commentItem.className = 'comment-item';
+        
+        commentItem.innerHTML = `
+          <div class="comment-user">متابع المنصة</div>
+          <div class="comment-text">${input.value.replace(/\n/g, '<br>')}</div>
+        `;
+        
+        commentsBox.insertBefore(commentItem, commentsBox.firstChild); // وضع التعليق الجديد في الأعلى
+        input.value = ""; // تفريغ الخانة بعد النشر
     }
   </script>
 </body>
