@@ -162,19 +162,6 @@
       </a>
 
       <!-- فيديو 3 -->
-      <a href="watch.html?v=surah-yasin.mp4&title=ما تيسر من سورة يس" class="video-card">
-        <div class="video-thumbnail">
-          <video preload="metadata" muted autoplay loop playsinline>
-            <source src="surah-yasin.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-info">
-          <div class="video-title">ما تيسر من سورة يس</div>
-          <div class="video-meta">Alislamiah-Tube</div>
-        </div>
-      </a>
-
-      <!-- فيديو 4 -->
       <a href="watch.html?v=فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية (1).mp4&title=فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية (1)" class="video-card">
         <div class="video-thumbnail">
           <video preload="metadata" muted autoplay loop playsinline>
@@ -187,7 +174,7 @@
         </div>
       </a>
 
-      <!-- فيديو 5 -->
+      <!-- فيديو 4 -->
       <a href="watch.html?v=فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية.mp4&title=فرض الفصل الثالث سنة ثالثة متوسط في العلوم الفيزيائية" class="video-card">
         <div class="video-thumbnail">
           <video preload="metadata" muted autoplay loop playsinline>
@@ -200,7 +187,7 @@
         </div>
       </a>
 
-      <!-- فيديو 6 -->
+      <!-- فيديو 5 -->
       <a href="watch.html?v=فرض الفصل الثالث في ماده العلوم الفيزيائيه السنه اولى متوسط.mp4&title=فرض الفصل الثالث في مادة العلوم الفيزيائية السنة الأولى متوسط" class="video-card">
         <div class="video-thumbnail">
           <video preload="metadata" muted autoplay loop playsinline>
@@ -213,7 +200,7 @@
         </div>
       </a>
 
-      <!-- فيديو 7 -->
+      <!-- فيديو 6 -->
       <a href="watch.html?v=نموذج مقترح فرض الفصل الثالث سنة ثالثة متوسط.mp4&title=نموذج مقترح فرض الفصل الثالث سنة ثالثة متوسط" class="video-card">
         <div class="video-thumbnail">
           <video preload="metadata" muted autoplay loop playsinline>
@@ -226,7 +213,7 @@
         </div>
       </a>
 
-      <!-- فيديو 8 -->
+      <!-- فيديو 7 -->
       <a href="watch.html?v=شرح درس الخطاب المباشر والغير مباشر مكتوب.mp4&title=شرح درس الخطاب المباشر والغير مباشر مكتوب" class="video-card">
         <div class="video-thumbnail">
           <video preload="metadata" muted autoplay loop playsinline>
