@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>نتائج البحث - Alislamiah-Tube</title>
-  <link rel="icon" href="assets/images/icon.png">
+  <!-- 1. تم تصحيح مسار أيقونة التبويب لتستدعى من المستودع مباشرة ✅ -->
+  <link rel="icon" href="icon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -30,7 +31,8 @@
 </head>
 <body>
   <header class="header">
-    <img src="assets/images/icon.png" class="app-icon" alt="icon" onerror="this.style.display='none'">
+    <!-- 2. تم تصحيح مسار الأيقونة في الهيدر لتعمل في صفحة البحث ✅ -->
+    <img src="icon.png" class="app-icon" alt="Alislamiah-Tube">
     <h1>نتائج البحث</h1>
   </header>
 
@@ -46,9 +48,10 @@
   </nav>
 
   <script>
+    // 3. تحديث مسارات ملفات الفيديوهات لتطابق الريبو الفعلي (حذف المجلدات الوهمية) ✅
     const videos = [
-      {id:1, file:"assets/videos/IMG_20260814_164242_861.mp4", title:"ما تيسر من سورة إبراهيم"},
-      {id:2, file:"assets/videos/lv_0_20260824111719.mp4", title:"آيات من سورة مريم بصوت مشاري راشد العفاسي"}
+      {id:1, file:"IMG_20260814_164242_861.mp4", title:"ما تيسر من سورة إبراهيم"},
+      {id:2, file:"lv_0_20260824111719.mp4", title:"آيات من سورة مريم بصوت مشاري راشد العفاسي"}
     ];
 
     const params = new URLSearchParams(window.location.search);
@@ -63,7 +66,6 @@
     } else {
       titleEl.textContent = 'نتائج البحث عن: "' + query + '"';
 
-      // بحث ذكي بالكلمات المفتاحية
       const keywords = query.split(/\s+/).filter(k => k.length > 0);
 
       const filtered = videos.filter(function(v) {
@@ -78,9 +80,10 @@
       } else {
         let html = '';
         filtered.forEach(function(v) {
-          html += '<a href="watch.html?v=' + v.id + '" class="video-card">' +
+          // 4. تعديل الرابط الديناميكي المنشأ برمجياً ليمرر اسم ملف الفيديو والعنوان إلى صفحة watch.html بشكل صحيح ✅
+          html += '<a href="watch.html?v=' + v.file + '&title=' + encodeURIComponent(v.title) + '" class="video-card">' +
                     '<div class="video-thumbnail">' +
-                      '<video preload="metadata" muted>' +
+                      '<video preload="metadata" muted autoplay loop playsinline>' +
                         '<source src="' + v.file + '" type="video/mp4">' +
                       '</video>' +
                     '</div>' +
