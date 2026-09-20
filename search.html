@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>البحث - Alislamiah-Tube</title>
+  <link rel="icon" href="assets/images/icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Cairo',sans-serif;background:#0f0f0f;color:#fff;min-height:100vh;padding-bottom:80px}
+    .header{background:#1a1a1a;padding:12px 20px;position:sticky;top:0;z-index:100;border-bottom:1px solid #333;display:flex;align-items:center;gap:12px}
+    .app-icon{width:42px;height:42px;border-radius:10px;object-fit:cover}
+    .header h1{font-size:1.4rem;font-weight:700;color:#4ade80}
+    .main-content{padding:40px 20px;max-width:600px;margin:0 auto;text-align:center}
+    .search-box{display:flex;gap:10px}
+    .search-box input{flex:1;padding:14px 18px;border:none;border-radius:12px;background:#1a1a1a;color:#fff;font-size:1rem;font-family:'Cairo',sans-serif;outline:none}
+    .search-box input::placeholder{color:#666}
+    .search-box button{padding:14px 28px;background:#4ade80;color:#000;border:none;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;font-family:'Cairo',sans-serif}
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #333;z-index:100}
+    .nav-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#888;font-size:0.8rem;gap:4px}
+    .nav-item.active{color:#4ade80}
+    .nav-item .icon{font-size:1.4rem}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <img src="assets/images/icon.png" class="app-icon" alt="icon">
+    <h1>البحث</h1>
+  </header>
+
+  <main class="main-content">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="إبحث عن فيديو">
+      <button onclick="goSearch()">بحث</button>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item"><span class="icon">🏠</span><span>الرئيسية</span></a>
+    <a href="search.html" class="nav-item active"><span class="icon">🔍</span><span>البحث</span></a>
+    <a href="https://gemini.google.com" target="_blank" class="nav-item"><span class="icon">✨</span><span>Gemini</span></a>
+  </nav>
+
+  <script>
+    function goSearch(){
+      const q = document.getElementById('searchInput').value.trim();
+      if(q){
+        window.location.href = 'results.html?q=' + encodeURIComponent(q);
+      }
+    }
+    document.getElementById('searchInput').addEventListener('keypress',function(e){
+      if(e.key === 'Enter') goSearch();
+    });
+  </script>
+</body>
+</html>
