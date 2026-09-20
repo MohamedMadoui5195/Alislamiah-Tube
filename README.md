@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alislamiah-Tube</title>
+  <!-- تم تصحيح مسار أيقونة التبويب العلوي لتستدعى من المستودع مباشرة ✅ -->
   <link rel="icon" href="icon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -29,17 +30,20 @@
 </head>
 <body>
   <header class="header">
-    <img src="assets/images/icon.png" class="app-icon" alt="icon" onerror="this.style.display='none'">
+    <!-- تم تصحيح مسار الأيقونة هنا وحذف المجلدات الزائدة التي لم تكن موجودة في ريبو GitHub ✅ -->
+    <img src="icon.png" class="app-icon" alt="Alislamiah-Tube Icon">
     <h1>Alislamiah-Tube</h1>
   </header>
 
   <main class="main-content">
     <h2 class="section-title">أحدث الفيديوهات</h2>
     <div class="videos-grid">
-      <a href="watch.html?v=1" class="video-card">
+      
+      <!-- الفيديو الأول: تم تعديل الرابط ليمرر اسم الفيديو والعنوان لصفحة watch.html وتصحيح مسار السورس ليعمل كمعاينة صامتة ✅ -->
+      <a href="watch.html?v=IMG_20260814_164242_861.mp4&title=ما تيسر من سورة إبراهيم" class="video-card">
         <div class="video-thumbnail">
-          <video preload="metadata" muted>
-            <source src="assets/videos/IMG_20260814_164242_861.mp4" type="video/mp4">
+          <video preload="metadata" muted autoplay loop playsinline>
+            <source src="IMG_20260814_164242_861.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-info">
@@ -47,10 +51,12 @@
           <div class="video-meta">Alislamiah-Tube</div>
         </div>
       </a>
-      <a href="watch.html?v=2" class="video-card">
+
+      <!-- الفيديو الثاني: تم تعديل الرابط وتصحيح مسار السورس لتشغيل المعاينة مباشرة من جذر المستودع ✅ -->
+      <a href="watch.html?v=lv_0_20260824111719.mp4&title=آيات من سورة مريم بصوت مشاري راشد العفاسي" class="video-card">
         <div class="video-thumbnail">
-          <video preload="metadata" muted>
-            <source src="assets/videos/lv_0_20260824111719.mp4" type="video/mp4">
+          <video preload="metadata" muted autoplay loop playsinline>
+            <source src="lv_0_20260824111719.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-info">
@@ -58,6 +64,7 @@
           <div class="video-meta">Alislamiah-Tube</div>
         </div>
       </a>
+
     </div>
   </main>
 
