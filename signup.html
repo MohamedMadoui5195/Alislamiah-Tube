@@ -3,47 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>إنشاء حساب - Alislamiah AI</title>
+<title>إنشاء حساب - Alislamiah Tube</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
-body{background:#0b1020;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center}
-.bg{position:fixed;inset:0;background:radial-gradient(circle at 15% 20%,rgba(0,119,255,.35),transparent 35%),radial-gradient(circle at 85% 25%,rgba(0,195,255,.25),transparent 30%),#0b1020;z-index:0}
-.container{position:relative;z-index:1;width:92%;max-width:400px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:40px 30px;backdrop-filter:blur(20px);box-shadow:0 25px 50px rgba(0,0,0,.45);text-align:center}
-.logo{width:75px;height:75px;margin:0 auto 20px;border-radius:20px;background:linear-gradient(135deg,#0077ff,#00c3ff);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;box-shadow:0 8px 25px rgba(0,150,255,.4)}
+body{background:#0d0d12;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center}
+
+/* نفس الخلفية الشعاعية الحمراء لمنصة Alislamiah Tube */
+.bg{position:fixed;inset:0;background:radial-gradient(circle at 15% 20%,rgba(255,0,0,.25),transparent 35%),radial-gradient(circle at 85% 25%,rgba(255,51,51,.15),transparent 30%),#0d0d12;z-index:0}
+
+.container{position:relative;z-index:1;width:92%;max-width:400px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:28px;padding:40px 30px;backdrop-filter:blur(20px);box-shadow:0 25px 50px rgba(0,0,0,.5);text-align:center}
+
+/* شعار Alislamiah Tube */
+.logo{width:75px;height:75px;margin:0 auto 20px;border-radius:20px;background:linear-gradient(135deg,#ff0000,#cc0000);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;box-shadow:0 8px 25px rgba(255,0,0,.35)}
+
 h1{font-size:24px;margin-bottom:6px}
-.subtitle{color:#9fb8e0;font-size:14px;margin-bottom:28px}
+.subtitle{color:#aaaaaa;font-size:14px;margin-bottom:28px}
 .input-group{margin-bottom:16px;text-align:right}
-.input-group label{display:block;font-size:13px;color:#a0b8d8;margin-bottom:6px}
-.input-group input{width:100%;padding:14px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.15);border-radius:12px;color:#fff;font-size:15px;outline:none}
-.input-group input:focus{border-color:#00c3ff}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#0077ff,#00c3ff);color:#fff;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px}
+.input-group label{display:block;font-size:13px;color:#bbbbbb;margin-bottom:6px}
+.input-group input{width:100%;padding:14px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;font-size:15px;outline:none}
+.input-group input:focus{border-color:#ff0000}
+
+/* زر إنشاء الحساب */
+.btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#ff0000,#cc0000);color:#fff;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px}
 .message{margin-top:14px;font-size:14px;min-height:20px}
 .message.error{color:#ff6b6b}.message.success{color:#4ade80}
-.links{margin-top:22px;font-size:14px;color:#9fb8e0}
-.links a{color:#00c3ff;text-decoration:none;font-weight:600}
-
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;justify-content:center;align-items:center;z-index:100}
-.modal-overlay.show{display:flex}
-.modal{background:#12182b;border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:28px;width:90%;max-width:360px;text-align:center}
-.modal h3{margin-bottom:10px;font-size:18px}
-.modal p{color:#9fb8e0;font-size:14px;margin-bottom:22px;line-height:1.5}
-.modal-btns{display:flex;gap:12px}
-.modal-btns button{flex:1;padding:12px;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer}
-.btn-yes{background:linear-gradient(135deg,#0077ff,#00c3ff);color:#fff}
-.btn-no{background:rgba(255,255,255,.1);color:#ccc}
+.links{margin-top:22px;font-size:14px;color:#aaaaaa}
+.links a{color:#ff0000;text-decoration:none;font-weight:600}
 </style>
 </head>
 <body>
 <div class="bg"></div>
 
 <div class="container">
-  <div class="logo">AI</div>
+  <div class="logo">Tube</div>
   <h1>إنشاء حساب جديد</h1>
-  <p class="subtitle">انضم إلى متصفح الإسلامية الذكي</p>
+  <p class="subtitle">انضم إلينا في منصة الإسلامية تيوب</p>
 
   <div class="input-group">
-    <label>الاسم</label>
-    <input type="text" id="name" placeholder="اسمك">
+    <label>الاسم الكامل</label>
+    <input type="text" id="username" placeholder="اسمي الكامل">
   </div>
 
   <div class="input-group">
@@ -53,15 +51,10 @@ h1{font-size:24px;margin-bottom:6px}
 
   <div class="input-group">
     <label>كلمة المرور</label>
-    <input type="password" id="password" placeholder="6 أحرف على الأقل">
+    <input type="password" id="password" placeholder="••••••••">
   </div>
 
-  <div class="input-group">
-    <label>تأكيد كلمة المرور</label>
-    <input type="password" id="password2" placeholder="أعد كتابة كلمة المرور">
-  </div>
-
-  <button class="btn" onclick="signup()">إنشاء الحساب</button>
+  <button class="btn" onclick="signup()">تسجيل الحساب</button>
   <div class="message" id="msg"></div>
 
   <div class="links">
@@ -69,111 +62,61 @@ h1{font-size:24px;margin-bottom:6px}
   </div>
 </div>
 
-<!-- سؤال حفظ كلمة المرور -->
-<div class="modal-overlay" id="saveModal">
-  <div class="modal">
-    <h3>هل تريد حفظ كلمة المرور؟</h3>
-    <p>سيتم حفظها في صفحة كلمات المرور المحفوظة حتى تتمكن من استرجاعها لاحقاً إذا نسيتها.</p>
-    <div class="modal-btns">
-      <button class="btn-yes" onclick="saveYes()">نعم، احفظها</button>
-      <button class="btn-no" onclick="saveNo()">لا</button>
-    </div>
-  </div>
-</div>
-
 <script>
-  let tempData = null;
-
   function getUsers() {
     return JSON.parse(localStorage.getItem("alislamiah_users") || "[]");
   }
 
-  function saveUsers(users) {
-    localStorage.setItem("alislamiah_users", JSON.stringify(users));
-  }
-
-  function getSavedPasswords() {
-    return JSON.parse(localStorage.getItem("alislamiah_saved_passwords") || "[]");
-  }
-
-  function setCurrentUser(user) {
-    localStorage.setItem("alislamiah_current_user", JSON.stringify(user));
-  }
-
   function signup() {
-    const name = document.getElementById("name").value.trim();
+    const name = document.getElementById("username").value.trim();
     const email = document.getElementById("email").value.trim().toLowerCase();
     const password = document.getElementById("password").value;
-    const password2 = document.getElementById("password2").value;
     const msg = document.getElementById("msg");
 
     msg.textContent = "";
     msg.className = "message";
 
-    if (!name || !email || !password || !password2) {
+    // التحقق من ملء جميع الحقول
+    if (!name || !email || !password) {
       msg.className = "message error";
-      msg.textContent = "يرجى ملء جميع الحقول";
-      return;
-    }
-    if (password.length < 6) {
-      msg.className = "message error";
-      msg.textContent = "كلمة المرور قصيرة جداً";
-      return;
-    }
-    if (password !== password2) {
-      msg.className = "message error";
-      msg.textContent = "كلمتا المرور غير متطابقتين";
+      msg.textContent = "يرجى ملء جميع الحقول المطلوبة";
       return;
     }
 
     const users = getUsers();
-    if (users.find(u => u.email === email)) {
+    
+    // التحقق مما إذا كان البريد الإلكتروني مسجلاً مسبقاً
+    const userExists = users.some(u => u.email === email);
+    if (userExists) {
       msg.className = "message error";
-      msg.textContent = "هذا البريد مستخدم بالفعل";
+      msg.textContent = "هذا البريد الإلكتروني مسجل بالفعل";
       return;
     }
 
-    const newUser = {
-      id: Date.now(),
+    // إضافة المستخدم الجديد إلى المصفوفة
+    users.push({
+      id: Date.now().toString(), // توليد معرف فريد يعتمد على الوقت
       name: name,
       email: email,
       password: password
-    };
+    });
 
-    users.push(newUser);
-    saveUsers(users);
+    // حفظ البيانات المحدثة محلياً
+    localStorage.setItem("alislamiah_users", JSON.stringify(users));
 
-    tempData = { name, email, password };
-    setCurrentUser({ id: newUser.id, name, email });
+    msg.className = "message success";
+    msg.textContent = "تم إنشاء الحساب بنجاح! جاري تحويلك...";
 
-    // إظهار سؤال الحفظ
-    document.getElementById("saveModal").classList.add("show");
+    // التوجيه إلى صفحة تسجيل الدخول بعد ثانية واحدة
+    setTimeout(() => {
+      window.location.href = "signin.html";
+    }, 1200);
   }
 
-  function saveYes() {
-    if (!tempData) return;
-
-    const saved = getSavedPasswords();
-    const exists = saved.find(s => s.email === tempData.email);
-
-    if (!exists) {
-      saved.push({
-        name: tempData.name,
-        email: tempData.email,
-        password: tempData.password,
-        savedAt: new Date().toISOString()
-      });
-      localStorage.setItem("alislamiah_saved_passwords", JSON.stringify(saved));
-    }
-
-    document.getElementById("saveModal").classList.remove("show");
-    window.location.href = "index.html";
-  }
-
-  function saveNo() {
-    document.getElementById("saveModal").classList.remove("show");
-    window.location.href = "index.html";
-  }
+  // دعم الضغط على زر Enter لإتمام التسجيل
+  document.getElementById("password").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") signup();
+  });
 </script>
 </body>
 </html>
