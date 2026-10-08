@@ -3,32 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الإسلامية Tube | تسجيل الدخول</title>
-  <!-- Font Awesome Icons -->
+  <title>تسجيل الدخول - Alislamiah-Tube</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts (Cairo) -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
       --primary-color: #0f766e;
       --primary-hover: #0d9488;
-      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      --card-bg: rgba(30, 41, 59, 0.7);
+      --bg-gradient: linear-gradient(135deg, #07111f 0%, #0b1a2c 100%);
+      --card-bg: rgba(11, 26, 44, 0.85);
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-color: rgba(255, 255, 255, 0.1);
-      --input-bg: rgba(15, 23, 42, 0.6);
-      --error-color: #ef4444;
-      --success-color: #10b981;
+      --text-muted: #718ba6;
+      --border-color: #173553;
+      --input-bg: rgba(7, 17, 31, 0.7);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Cairo', sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
 
     body {
       background: var(--bg-gradient);
@@ -43,42 +34,22 @@
     .auth-container {
       background: var(--card-bg);
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--border-color);
       border-radius: 20px;
       padding: 40px;
       width: 100%;
       max-width: 440px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      transition: all 0.3s ease;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
 
-    .brand-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .brand-logo {
-      font-size: 2.5rem;
-      color: #2dd4bf;
-      margin-bottom: 10px;
-    }
-
-    .brand-title {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    .brand-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-top: 5px;
-    }
+    .brand-header { text-align: center; margin-bottom: 30px; }
+    .brand-logo { font-size: 2.5rem; color: #6fb7ff; margin-bottom: 10px; }
+    .brand-title { font-size: 1.5rem; font-weight: 800; }
+    .brand-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-top: 5px; }
 
     .auth-tabs {
       display: flex;
-      background: rgba(15, 23, 42, 0.4);
+      background: rgba(7, 17, 31, 0.5);
       border-radius: 12px;
       padding: 4px;
       margin-bottom: 25px;
@@ -99,36 +70,15 @@
     }
 
     .tab-btn.active {
-      background: var(--primary-color);
+      background: #1678c9;
       color: #fff;
-      box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
     }
 
-    .form-group {
-      margin-bottom: 20px;
-      position: relative;
-    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--text-muted); }
 
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--text-muted);
-    }
-
-    .input-wrapper {
-      position: relative;
-    }
-
-    .input-wrapper i {
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      font-size: 1rem;
-    }
+    .input-wrapper { position: relative; }
+    .input-wrapper i { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
 
     .form-input {
       width: 100%;
@@ -139,13 +89,9 @@
       color: #fff;
       font-size: 0.95rem;
       outline: none;
-      transition: all 0.3s ease;
     }
 
-    .form-input:focus {
-      border-color: #2dd4bf;
-      box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15);
-    }
+    .form-input:focus { border-color: #6fb7ff; }
 
     .options-row {
       display: flex;
@@ -153,87 +99,47 @@
       align-items: center;
       margin-bottom: 25px;
       font-size: 0.85rem;
-    }
-
-    .remember-me {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
       color: var(--text-muted);
     }
 
-    .remember-me input {
-      accent-color: var(--primary-color);
-      width: 16px;
-      height: 16px;
-    }
-
-    .forgot-link {
-      color: #2dd4bf;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .forgot-link:hover {
-      text-decoration: underline;
-    }
+    .remember-me { display: flex; align-items: center; gap: 8px; cursor: pointer; }
 
     .submit-btn {
       width: 100%;
       padding: 12px;
-      background: var(--primary-color);
+      background: #1678c9;
       color: #fff;
       border: none;
       border-radius: 10px;
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.3s ease;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
     }
 
-    .submit-btn:hover {
-      background: var(--primary-hover);
-      transform: translateY(-1px);
-    }
-
-    .form-box {
-      display: none;
-    }
-
-    .form-box.active {
-      display: block;
-      animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .submit-btn:hover { background: #1469b0; }
+    .form-box { display: none; }
+    .form-box.active { display: block; }
   </style>
 </head>
 <body>
 
   <div class="auth-container">
     <div class="brand-header">
-      <div class="brand-logo">
-        <i class="fa-solid fa-play-circle"></i>
-      </div>
-      <div class="brand-title">الإسلامية Tube</div>
+      <div class="brand-logo"><i class="fa-solid fa-play-circle"></i></div>
+      <div class="brand-title">Alislamiah-Tube</div>
       <div class="brand-subtitle">بوابتك للمحتوى الهادف والموثوق</div>
     </div>
 
-    <!-- التبديل بين الدخول وإنشاء حساب -->
     <div class="auth-tabs">
       <button class="tab-btn active" onclick="switchTab('login')">تسجيل الدخول</button>
       <button class="tab-btn" onclick="switchTab('register')">حساب جديد</button>
     </div>
 
-    <!-- نموذج تسجيل الدخول -->
+    <!-- تسجيل الدخول -->
     <form id="loginForm" class="form-box active" onsubmit="handleAuth(event, 'login')">
       <div class="form-group">
         <label>البريد الإلكتروني</label>
@@ -256,16 +162,15 @@
           <input type="checkbox" id="rememberMe">
           <span>حفظ كلمة المرور</span>
         </label>
-        <a href="#" class="forgot-link">نسيت كلمة المرور؟</a>
       </div>
 
       <button type="submit" class="submit-btn">
-        <span>دخول</span>
+        <span>دخول إلى الرئيسية</span>
         <i class="fa-solid fa-arrow-left"></i>
       </button>
     </form>
 
-    <!-- نموذج إنشاء حساب جديد -->
+    <!-- إنشاء حساب -->
     <form id="registerForm" class="form-box" onsubmit="handleAuth(event, 'register')">
       <div class="form-group">
         <label>الاسم الكامل</label>
@@ -292,54 +197,53 @@
       </div>
 
       <button type="submit" class="submit-btn">
-        <span>إنشاء الحساب</span>
+        <span>إنشاء الحساب والدخول</span>
         <i class="fa-solid fa-user-plus"></i>
       </button>
     </form>
   </div>
 
   <script>
-    // التبديل بين الواجهات
     function switchTab(tab) {
-      const tabs = document.querySelectorAll('.tab-btn');
-      const forms = document.querySelectorAll('.form-box');
-
-      tabs.forEach(t => t.classList.remove('active'));
-      forms.forEach(f => f.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.form-box').forEach(f => f.classList.remove('active'));
 
       if (tab === 'login') {
-        tabs[0].classList.add('active');
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
         document.getElementById('loginForm').classList.add('active');
       } else {
-        tabs[1].classList.add('active');
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
         document.getElementById('registerForm').classList.add('active');
       }
     }
 
-    // إدارة البيانات وتمرير الكلمات المحفوظة
     function handleAuth(event, type) {
       event.preventDefault();
 
-      if (type === 'login') {
-        const email = document.getElementById('loginEmail').value;
-        const remember = document.getElementById('rememberMe').checked;
+      const SESSION_KEY = "alislamiah_tube_session";
 
+      // حفظ بيانات الجلسة البرمجية
+      const sessionData = { loggedIn: true, time: new Date().getTime() };
+      localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
+      sessionStorage.setItem('isLoggedIn', 'true');
+
+      if (type === 'login') {
+        const remember = document.getElementById('rememberMe').checked;
         if (remember) {
-          localStorage.setItem('saved_user_email', email);
+          localStorage.setItem('alislamiah_remember', 'true');
         } else {
-          localStorage.removeItem('saved_user_email');
+          localStorage.removeItem('alislamiah_remember');
         }
-        alert('تم تسجيل الدخول بنجاح!');
-      } else {
-        alert('تم إنشاء الحساب بنجاح!');
       }
+
+      // التوجيه المباشر والنهائي للصفحة الرئيسية
+      window.location.replace("index.html");
     }
 
-    // استرجاع الكلمات/البيانات المحفوظة عند التحميل
+    // تعبئة البريد المحفوظ تلقائياً إن وجد
     window.addEventListener('DOMContentLoaded', () => {
-      const savedEmail = localStorage.getItem('saved_user_email');
-      if (savedEmail) {
-        document.getElementById('loginEmail').value = savedEmail;
+      const isRemembered = localStorage.getItem('alislamiah_remember');
+      if (isRemembered === 'true') {
         document.getElementById('rememberMe').checked = true;
       }
     });
