@@ -1,7 +1,31 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>الإعدادات - Alislamiah-Tube</title>  <link rel="icon" href="icon.png" type="image/png">  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الإعدادات - Alislamiah-Tube</title>
+  <link rel="icon" href="icon.png" type="image/png">
+  
+  <!-- فحص تسجيل الدخول -->
+  <script>
+    (function () {
+      const SESSION_KEY = "alislamiah_tube_session";
+      try {
+        const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+        const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+        const isRemembered = localStorage.getItem("alislamiah_remember") === "true";
+
+        if ((!session || session.loggedIn !== true) && !isLoggedIn && !isRemembered) {
+          window.location.replace("signin.html");
+        }
+      } catch (error) {
+        localStorage.removeItem(SESSION_KEY);
+        window.location.replace("signin.html");
+      }
+    })();
+  </script>
+
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -17,7 +41,6 @@
       padding-bottom: 90px;
     }
 
-    /* الهيدر */
     .header {
       background: #0a1728;
       padding: 12px 20px;
@@ -43,7 +66,6 @@
       color: #6fb7ff;
     }
 
-    /* المحتوى */
     .main-content {
       padding: 24px 16px 30px;
       max-width: 800px;
@@ -63,7 +85,6 @@
       margin-bottom: 25px;
     }
 
-    /* عنوان المجموعة */
     .section-title {
       color: #7090b0;
       font-size: 0.82rem;
@@ -71,7 +92,6 @@
       margin: 0 6px 9px;
     }
 
-    /* بطاقة الإعدادات */
     .settings-card {
       background: #0b1a2c;
       border: 1px solid #173553;
@@ -81,7 +101,6 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.25);
     }
 
-    /* عنصر */
     .setting-item {
       min-height: 76px;
       padding: 12px 16px;
@@ -101,7 +120,6 @@
       background: #102640;
     }
 
-    /* الأيقونة */
     .setting-icon {
       width: 45px;
       height: 45px;
@@ -114,6 +132,7 @@
       justify-content: center;
       margin-left: 14px;
       color: #69b5ff;
+      font-size: 1.2rem;
     }
 
     html[dir="ltr"] .setting-icon {
@@ -126,7 +145,6 @@
       height: 22px;
     }
 
-    /* النص */
     .setting-content {
       flex: 1;
     }
@@ -144,7 +162,6 @@
       line-height: 1.5;
     }
 
-    /* السهم */
     .arrow {
       color: #55718d;
       font-size: 1.5rem;
@@ -156,7 +173,6 @@
       transform: rotate(0deg);
     }
 
-    /* اللغة */
     .language-header {
       cursor: pointer;
     }
@@ -216,7 +232,6 @@
       border-radius: 50%;
     }
 
-    /* القائمة السفلية */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -250,7 +265,6 @@
       font-size: 1.35rem;
     }
 
-    /* حقوق */
     .footer {
       text-align: center;
       color: #526b84;
@@ -268,327 +282,203 @@
         padding-top: 35px;
       }
     }
-  </style></head><body>  <!-- الهيدر -->  <header class="header">
+  </style>
+</head>
+<body>
+
+  <header class="header">
     <img src="icon.png" class="app-icon" alt="Alislamiah">
     <h1 id="header-title">Alislamiah-Tube</h1>
-  </header>  <main class="main-content"><h2 class="page-title" id="page-title">الإعدادات</h2>
+  </header>
 
-<p class="page-description" id="page-description">
-  تخصيص التطبيق والوصول إلى خدمات الإسلامية
-</p>
+  <main class="main-content">
+    <h2 class="page-title" id="page-title">الإعدادات</h2>
 
+    <p class="page-description" id="page-description">
+      تخصيص التطبيق والوصول إلى خدمات الإسلامية
+    </p>
 
-<!-- المعلومات والخدمات -->
-<div class="section-title" id="info-section">
-  المعلومات والخدمات
-</div>
-
-<div class="settings-card">
-
-  <!-- عن Alislamiah -->
-  <a
-    href="https://mohamedmadoui5195.github.io/Alislamiah-_net/about.html"
-    class="setting-item"
-  >
-
-    <div class="setting-icon">
-      <svg viewBox="0 0 24 24" fill="none"
-           stroke="currentColor"
-           stroke-width="2"
-           stroke-linecap="round"
-           stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9"></circle>
-        <line x1="12" y1="10" x2="12" y2="16"></line>
-        <circle cx="12" cy="7" r="1" fill="currentColor"></circle>
-      </svg>
+    <div class="section-title" id="info-section">
+      المعلومات والخدمات
     </div>
 
-    <div class="setting-content">
-      <div class="setting-title" id="about-title">
-        عن Alislamiah
-      </div>
+    <div class="settings-card">
 
-      <div class="setting-description" id="about-description">
-        تعرف على Alislamiah ومعلومات عنها
-      </div>
-    </div>
-
-    <span class="arrow">›</span>
-
-  </a>
-
-<!-- SAVED PASSWORDS -->
-<div
-    class="setting"
-    onclick="window.location.href='saved.passwords.html'">
-
-    <div class="setting-left">
-
-        <div class="icon">
-            🔑
+      <!-- عن Alislamiah -->
+      <a href="https://mohamedmadoui5195.github.io/Alislamiah-_net/about.html" class="setting-item">
+        <div class="setting-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <line x1="12" y1="10" x2="12" y2="16"></line>
+            <circle cx="12" cy="7" r="1" fill="currentColor"></circle>
+          </svg>
         </div>
-
-        <div class="text">
-
-            <h2>Saved Passwords</h2>
-
-            <p>
-                View and manage saved passwords
-            </p>
-
+        <div class="setting-content">
+          <div class="setting-title" id="about-title">عن Alislamiah</div>
+          <div class="setting-description" id="about-description">تعرف على Alislamiah ومعلومات عنها</div>
         </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- الكلمات المحفوظة مع رابط المباشر كامل -->
+      <a href="https://mohamedmadoui5195.github.io/Alislamiah-Tube/saved.passwords.html" class="setting-item">
+        <div class="setting-icon">🔑</div>
+        <div class="setting-content">
+          <div class="setting-title" id="passwords-title">الكلمات المحفوظة</div>
+          <div class="setting-description" id="passwords-description">عرض وإدارة كلمات المرور المحفوظة</div>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- خدمات الإسلامية الرقمية -->
+      <a href="https://mohamedmadoui5195.github.io/Alislamiah-services/" class="setting-item">
+        <div class="setting-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+          </svg>
+        </div>
+        <div class="setting-content">
+          <div class="setting-title" id="services-title">خدمات الإسلامية الرقمية</div>
+          <div class="setting-description" id="services-description">الوصول إلى خدمات ومنصات الإسلامية الرقمية</div>
+        </div>
+        <span class="arrow">›</span>
+      </a>
 
     </div>
 
-    <div class="arrow">
-        ›
+    <div class="section-title" id="app-section">
+      التطبيق
     </div>
 
-</div>
+    <div class="settings-card">
 
-  <!-- خدمات الإسلامية الرقمية -->
-  <a
-    href="https://mohamedmadoui5195.github.io/Alislamiah-services/"
-    class="setting-item"
-  >
-
-    <div class="setting-icon">
-      <svg viewBox="0 0 24 24" fill="none"
-           stroke="currentColor"
-           stroke-width="2"
-           stroke-linecap="round"
-           stroke-linejoin="round">
-        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
-        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
-        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
-        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
-      </svg>
-    </div>
-
-    <div class="setting-content">
-      <div class="setting-title" id="services-title">
-        خدمات الإسلامية الرقمية
+      <div class="setting-item language-header" onclick="toggleLanguages()">
+        <div class="setting-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <path d="M12 3c-2.4 2.4-3.7 5.5-3.7 9s1.3 6.6 3.7 9"></path>
+            <path d="M12 3c2.4 2.4 3.7 5.5 3.7 9s-1.3 6.6-3.7 9"></path>
+          </svg>
+        </div>
+        <div class="setting-content">
+          <div class="setting-title" id="language-title">لغة التطبيق</div>
+          <div class="setting-description" id="selected-language">العربية</div>
+        </div>
+        <span class="arrow" id="language-arrow">›</span>
       </div>
 
-      <div class="setting-description" id="services-description">
-        الوصول إلى خدمات ومنصات الإسلامية الرقمية
-      </div>
-    </div>
-
-    <span class="arrow">›</span>
-
-  </a>
-
-</div>
-
-
-<!-- التطبيق -->
-<div class="section-title" id="app-section">
-  التطبيق
-</div>
-
-<div class="settings-card">
-
-  <!-- اللغة -->
-  <div
-    class="setting-item language-header"
-    onclick="toggleLanguages()"
-  >
-
-    <div class="setting-icon">
-      <svg viewBox="0 0 24 24" fill="none"
-           stroke="currentColor"
-           stroke-width="2"
-           stroke-linecap="round"
-           stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9"></circle>
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <path d="M12 3c-2.4 2.4-3.7 5.5-3.7 9s1.3 6.6 3.7 9"></path>
-        <path d="M12 3c2.4 2.4 3.7 5.5 3.7 9s-1.3 6.6-3.7 9"></path>
-      </svg>
-    </div>
-
-    <div class="setting-content">
-
-      <div class="setting-title" id="language-title">
-        لغة التطبيق
-      </div>
-
-      <div
-        class="setting-description"
-        id="selected-language"
-      >
-        العربية
+      <div class="language-options" id="language-options">
+        <div class="language-option" data-lang="ar" onclick="selectLanguage('ar')">
+          <span class="language-name">العربية</span>
+          <span class="language-check"></span>
+        </div>
+        <div class="language-option" data-lang="fr" onclick="selectLanguage('fr')">
+          <span class="language-name">Français</span>
+          <span class="language-check"></span>
+        </div>
+        <div class="language-option" data-lang="en" onclick="selectLanguage('en')">
+          <span class="language-name">English</span>
+          <span class="language-check"></span>
+        </div>
       </div>
 
     </div>
 
-    <span class="arrow" id="language-arrow">›</span>
-
-  </div>
-
-
-  <!-- خيارات اللغة -->
-  <div
-    class="language-options"
-    id="language-options"
-  >
-
-    <div
-      class="language-option"
-      data-lang="ar"
-      onclick="selectLanguage('ar')"
-    >
-      <span class="language-name">العربية</span>
-      <span class="language-check"></span>
+    <div class="footer">
+      <strong>Alislamiah-Tube</strong><br>
+      <span id="footer-text">الإسلامية دائماً الأفضل</span>
     </div>
 
-    <div
-      class="language-option"
-      data-lang="fr"
-      onclick="selectLanguage('fr')"
-    >
-      <span class="language-name">Français</span>
-      <span class="language-check"></span>
-    </div>
+  </main>
 
-    <div
-      class="language-option"
-      data-lang="en"
-      onclick="selectLanguage('en')"
-    >
-      <span class="language-name">English</span>
-      <span class="language-check"></span>
-    </div>
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <span class="icon">🏠</span>
+      <span id="nav-home">الرئيسية</span>
+    </a>
+    <a href="search.html" class="nav-item">
+      <span class="icon">🔍</span>
+      <span id="nav-search">البحث</span>
+    </a>
+    <a href="Settings.html" class="nav-item active">
+      <span class="icon">⚙️</span>
+      <span id="nav-settings">الإعدادات</span>
+    </a>
+  </nav>
 
-  </div>
-
-</div>
-
-
-<div class="footer">
-  <strong>Alislamiah-Tube</strong><br>
-  <span id="footer-text">الإسلامية دائماً الأفضل</span>
-</div>
-
-  </main>  <!-- القائمة السفلية -->  <nav class="bottom-nav"><a href="index.html" class="nav-item">
-  <span class="icon">🏠</span>
-  <span id="nav-home">الرئيسية</span>
-</a>
-
-<a href="search.html" class="nav-item">
-  <span class="icon">🔍</span>
-  <span id="nav-search">البحث</span>
-</a>
-
-<a href="Settings.html" class="nav-item active">
-  <span class="icon">⚙️</span>
-  <span id="nav-settings">الإعدادات</span>
-</a>
-
-  </nav>  <script>
-
-    /*
-      نفس نظام اللغة الموجود في index.html
-      المفتاح المستخدم:
-      app_lang
-    */
-
+  <script>
     const translations = {
-
       ar: {
         dir: "rtl",
         header: "Alislamiah-Tube",
         pageTitle: "الإعدادات",
         pageDescription: "تخصيص التطبيق والوصول إلى خدمات الإسلامية",
         infoSection: "المعلومات والخدمات",
-
         aboutTitle: "عن Alislamiah",
         aboutDescription: "تعرف على Alislamiah ومعلومات عنها",
-
+        passwordsTitle: "الكلمات المحفوظة",
+        passwordsDescription: "عرض وإدارة كلمات المرور المحفوظة",
         servicesTitle: "خدمات الإسلامية الرقمية",
         servicesDescription: "الوصول إلى خدمات ومنصات الإسلامية الرقمية",
-
         appSection: "التطبيق",
         languageTitle: "لغة التطبيق",
-
         home: "الرئيسية",
         search: "البحث",
         settings: "الإعدادات",
-
         footer: "الإسلامية دائماً الأفضل",
-
         selectedLanguage: "العربية"
       },
-
       fr: {
         dir: "ltr",
         header: "Alislamiah-Tube",
         pageTitle: "Paramètres",
         pageDescription: "Personnaliser l'application et accéder aux services Alislamiah",
         infoSection: "Informations et services",
-
         aboutTitle: "À propos d'Alislamiah",
         aboutDescription: "Découvrez Alislamiah et ses informations",
-
+        passwordsTitle: "Mots de passe enregistrés",
+        passwordsDescription: "Afficher et gérer les mots de passe enregistrés",
         servicesTitle: "Services numériques Alislamiah",
         servicesDescription: "Accédez aux services et plateformes numériques Alislamiah",
-
         appSection: "Application",
         languageTitle: "Langue de l'application",
-
         home: "Accueil",
         search: "Recherche",
         settings: "Paramètres",
-
         footer: "Alislamiah, toujours le meilleur",
-
         selectedLanguage: "Français"
       },
-
       en: {
         dir: "ltr",
         header: "Alislamiah-Tube",
         pageTitle: "Settings",
         pageDescription: "Customize the app and access Alislamiah services",
         infoSection: "Information & Services",
-
         aboutTitle: "About Alislamiah",
         aboutDescription: "Learn more about Alislamiah",
-
+        passwordsTitle: "Saved Passwords",
+        passwordsDescription: "View and manage saved passwords",
         servicesTitle: "Alislamiah Digital Services",
         servicesDescription: "Access Alislamiah digital services and platforms",
-
         appSection: "Application",
         languageTitle: "App language",
-
         home: "Home",
         search: "Search",
         settings: "Settings",
-
         footer: "Alislamiah, always the best",
-
         selectedLanguage: "English"
       }
-
     };
 
-
-    /*
-      اللغة المحفوظة في التطبيق
-      متوافقة مباشرة مع index.html
-    */
     let currentLang = localStorage.getItem("app_lang") || "ar";
 
-
     function applyLanguage(lang) {
-
-      if (!translations[lang]) {
-        lang = "ar";
-      }
-
+      if (!translations[lang]) lang = "ar";
       currentLang = lang;
-
       const t = translations[lang];
 
       document.documentElement.setAttribute("lang", lang);
@@ -599,9 +489,11 @@
       document.getElementById("page-description").textContent = t.pageDescription;
 
       document.getElementById("info-section").textContent = t.infoSection;
-
       document.getElementById("about-title").textContent = t.aboutTitle;
       document.getElementById("about-description").textContent = t.aboutDescription;
+
+      document.getElementById("passwords-title").textContent = t.passwordsTitle;
+      document.getElementById("passwords-description").textContent = t.passwordsDescription;
 
       document.getElementById("services-title").textContent = t.servicesTitle;
       document.getElementById("services-description").textContent = t.servicesDescription;
@@ -617,65 +509,31 @@
 
       document.getElementById("footer-text").textContent = t.footer;
 
-      /*
-        تحديد اللغة الحالية
-      */
       document.querySelectorAll(".language-option").forEach(function(option) {
-
         if (option.dataset.lang === lang) {
           option.classList.add("active");
         } else {
           option.classList.remove("active");
         }
-
       });
     }
 
-
-    /*
-      فتح وإغلاق قائمة اللغات
-    */
     function toggleLanguages() {
-
-      const options =
-        document.getElementById("language-options");
-
-      const arrow =
-        document.getElementById("language-arrow");
+      const options = document.getElementById("language-options");
+      const arrow = document.getElementById("language-arrow");
 
       options.classList.toggle("show");
-
-      if (options.classList.contains("show")) {
-        arrow.textContent = "⌄";
-      } else {
-        arrow.textContent = "›";
-      }
+      arrow.textContent = options.classList.contains("show") ? "⌄" : "›";
     }
 
-
-    /*
-      اختيار اللغة
-    */
     function selectLanguage(lang) {
-
       localStorage.setItem("app_lang", lang);
-
       applyLanguage(lang);
-
-      document
-        .getElementById("language-options")
-        .classList.remove("show");
-
-      document
-        .getElementById("language-arrow")
-        .textContent = "›";
+      document.getElementById("language-options").classList.remove("show");
+      document.getElementById("language-arrow").textContent = "›";
     }
 
-
-    /*
-      تشغيل اللغة المحفوظة عند فتح Settings.html
-    */
     applyLanguage(currentLang);
-
-  </script></body>
+  </script>
+</body>
 </html>
