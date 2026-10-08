@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alislamiah Tube - إنشاء حساب</title>
+<link rel="icon" href="icon.png">
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;min-height:100vh;
+background:radial-gradient(circle at top,#0d3264,#041225 48%,#020812);
+color:#fff;font-family:Arial,sans-serif;
+display:flex;align-items:center;justify-content:center;padding:18px
+}
+.box{
+width:100%;max-width:440px;
+background:rgba(5,19,40,.95);
+border:1px solid #1b4778;border-radius:27px;
+padding:30px 23px;
+box-shadow:0 25px 70px #0009
+}
+.logo{text-align:center}
+.logo img{width:82px;height:82px;border-radius:20px;object-fit:contain}
+h1{text-align:center;margin:16px 0 7px;font-size:25px}
+.sub{text-align:center;color:#9db4d1;font-size:14px;margin-bottom:25px}
+.field{margin:14px 0}
+label{display:block;font-size:14px;margin-bottom:7px;color:#dbe8f7}
+input{
+width:100%;height:51px;border-radius:14px;
+border:1px solid #193c64;background:#091d38;
+color:#fff;padding:0 15px;outline:none;font-size:15px
+}
+input:focus{border-color:#2b8cff;box-shadow:0 0 0 3px #1680ff18}
+.btn{
+width:100%;height:52px;border:0;border-radius:14px;
+background:linear-gradient(135deg,#2180ff,#0752c7);
+color:#fff;font-size:16px;font-weight:bold;margin-top:8px;cursor:pointer
+}
+.msg{text-align:center;min-height:24px;margin:14px 0;font-size:14px;line-height:1.6}
+.err{color:#ff7777}.ok{color:#54e39a}
+.bottom{text-align:center;color:#9bb1cb;font-size:14px;margin-top:19px}
+.link{
+background:none;border:0;color:#4c9cff;
+font-weight:bold;cursor:pointer;font-size:14px
+}
+.langs{display:flex;justify-content:center;gap:7px;margin-top:22px}
+.langs button{
+background:#071a34;color:#a5bad3;border:1px solid #20446d;
+border-radius:9px;padding:7px 10px;cursor:pointer
+}
+.langs .active{background:#125dc9;color:#fff;border-color:#318aff}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="logo">
+<img src="icon.png" alt="Alislamiah Tube">
+</div>
+
+<h1 id="title">إنشاء حساب</h1>
+<div class="sub" id="sub">أنشئ حسابك في Alislamiah Tube</div>
+
+<form id="form">
+
+<div class="field">
+<label id="nameL">الاسم</label>
+<input id="name" required autocomplete="name">
+</div>
+
+<div class="field">
+<label id="emailL">البريد الإلكتروني</label>
+<input id="email" type="email" required autocomplete="email">
+</div>
+
+<div class="field">
+<label id="phoneL">رقم الهاتف</label>
+<input id="phone" type="tel" required autocomplete="tel">
+</div>
+
+<div class="field">
+<label id="passL">كلمة المرور</label>
+<input id="pass" type="password" required autocomplete="new-password">
+</div>
+
+<div class="field">
+<label id="confirmL">تأكيد كلمة المرور</label>
+<input id="confirm" type="password" required autocomplete="new-password">
+</div>
+
+<button class="btn" id="create">إنشاء الحساب</button>
+
+</form>
+
+<div id="msg" class="msg"></div>
+
+<div class="bottom">
+<span id="have">لديك حساب بالفعل؟</span>
+<button class="link" onclick="location.href='signin.html'" id="signin">
+تسجيل الدخول
+</button>
+</div>
+
+<div class="langs">
+<button data-l="ar">العربية</button>
+<button data-l="fr">Français</button>
+<button data-l="en">English</button>
+</div>
+
+</div>
+
+<script>
+
+const USERS_KEY="alislamiah_tube_users";
+const LANG_KEY="alislamiah_tube_lang";
+
+function getUsers(){
+try{
+const users=JSON.parse(localStorage.getItem(USERS_KEY)||"[]");
+return Array.isArray(users)?users:[];
+}catch{
+return [];
+}
+}
+
+function saveUsers(users){
+localStorage.setItem(USERS_KEY,JSON.stringify(users));
+}
+
+function normalizeEmail(v){
+return String(v||"").trim().toLowerCase();
+}
+
+function normalizePhone(v){
+return String(v||"").replace(/\s+/g,"").trim();
+}
+
+function findUser(account){
+
+const value=String(account||"").trim();
+const email=normalizeEmail(value);
+const phone=normalizePhone(value);
+
+return getUsers().find(user=>
+normalizeEmail(user.email)===email ||
+normalizePhone(user.phone)===phone
+)||null;
+
+}
+
+const T={
+
+ar:{
+title:"إنشاء حساب",
+sub:"أنشئ حسابك في Alislamiah Tube",
+name:"الاسم",
+email:"البريد الإلكتروني",
+phone:"رقم الهاتف",
+pass:"كلمة المرور",
+confirm:"تأكيد كلمة المرور",
+create:"إنشاء الحساب",
+have:"لديك حساب بالفعل؟",
+signin:"تسجيل الدخول",
+empty:"يرجى ملء جميع الحقول.",
+badEmail:"البريد الإلكتروني غير صحيح.",
+mismatch:"كلمتا المرور غير متطابقتين.",
+exists:"هذا البريد الإلكتروني أو رقم الهاتف مرتبط بحساب موجود.",
+created:"تم إنشاء الحساب بنجاح. سيتم نقلك إلى تسجيل الدخول."
+},
+
+fr:{
+title:"Créer un compte",
+sub:"Créez votre compte Alislamiah Tube",
+name:"Nom",
+email:"E-mail",
+phone:"Numéro de téléphone",
+pass:"Mot de passe",
+confirm:"Confirmer le mot de passe",
+create:"Créer le compte",
+have:"Vous avez déjà un compte ?",
+signin:"Se connecter",
+empty:"Veuillez remplir tous les champs.",
+badEmail:"Adresse e-mail invalide.",
+mismatch:"Les mots de passe ne correspondent pas.",
+exists:"Cet e-mail ou numéro est déjà associé à un compte.",
+created:"Compte créé. Redirection vers la connexion."
+},
+
+en:{
+title:"Create account",
+sub:"Create your Alislamiah Tube account",
+name:"Name",
+email:"Email",
+phone:"Phone number",
+pass:"Password",
+confirm:"Confirm password",
+create:"Create account",
+have:"Already have an account?",
+signin:"Sign in",
+empty:"Please fill in all fields.",
+badEmail:"Invalid email address.",
+mismatch:"Passwords do not match.",
+exists:"This email or phone number is already registered.",
+created:"Account created. Redirecting to sign in."
+}
+
+};
+
+let lang=localStorage.getItem(LANG_KEY)||"ar";
+
+function applyLanguage(){
+
+const t=T[lang];
+
+document.documentElement.lang=lang;
+document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+
+document.getElementById("title").textContent=t.title;
+document.getElementById("sub").textContent=t.sub;
+document.getElementById("nameL").textContent=t.name;
+document.getElementById("emailL").textContent=t.email;
+document.getElementById("phoneL").textContent=t.phone;
+document.getElementById("passL").textContent=t.pass;
+document.getElementById("confirmL").textContent=t.confirm;
+document.getElementById("create").textContent=t.create;
+document.getElementById("have").textContent=t.have;
+document.getElementById("signin").textContent=t.signin;
+
+document.querySelectorAll(".langs button").forEach(button=>{
+button.classList.toggle("active",button.dataset.l===lang);
+});
+
+}
+
+document.querySelectorAll(".langs button").forEach(button=>{
+
+button.onclick=()=>{
+
+lang=button.dataset.l;
+
+localStorage.setItem(LANG_KEY,lang);
+
+applyLanguage();
+
+};
+
+});
+
+document.getElementById("form").onsubmit=function(e){
+
+e.preventDefault();
+
+const t=T[lang];
+
+const name=document.getElementById("name").value.trim();
+const email=normalizeEmail(document.getElementById("email").value);
+const phone=normalizePhone(document.getElementById("phone").value);
+const pass=document.getElementById("pass").value;
+const confirm=document.getElementById("confirm").value;
+
+const msg=document.getElementById("msg");
+
+msg.className="msg";
+msg.textContent="";
+
+if(!name||!email||!phone||!pass||!confirm){
+
+msg.className="msg err";
+msg.textContent=t.empty;
+return;
+
+}
+
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+
+msg.className="msg err";
+msg.textContent=t.badEmail;
+return;
+
+}
+
+if(pass!==confirm){
+
+msg.className="msg err";
+msg.textContent=t.mismatch;
+return;
+
+}
+
+if(findUser(email)||findUser(phone)){
+
+msg.className="msg err";
+msg.textContent=t.exists;
+return;
+
+}
+
+const user={
+id:"user_"+Date.now()+"_"+Math.random().toString(36).slice(2),
+name:name,
+email:email,
+phone:phone,
+password:pass,
+createdAt:Date.now()
+};
+
+const users=getUsers();
+
+users.push(user);
+
+saveUsers(users);
+
+msg.className="msg ok";
+msg.textContent=t.created;
+
+setTimeout(()=>{
+location.href="signin.html";
+},900);
+
+};
+
+applyLanguage();
+
+</script>
+
+</body>
+</html>
