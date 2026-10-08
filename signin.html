@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة تسجيل الدخول الموحد | Alislamiah AI</title>
+    <title>تسجيل الدخول | Alislamiah AI</title>
     <!-- استيراد خط القاهرة الاحترافي -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
@@ -35,7 +35,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* حاوية الجزيئات الخلفية المتحركة */
+        /* جزيئات الخلفية المتحركة */
         .particles {
             position: absolute;
             top: 0;
@@ -50,200 +50,183 @@
         .particle {
             position: absolute;
             display: block;
-            background: rgba(40, 167, 69, 0.2);
+            background: rgba(40, 167, 69, 0.15);
             border-radius: 50%;
             animation: floatUp 12s linear infinite;
             bottom: -20px;
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-105vh) scale(0.3) rotate(360deg); opacity: 0; }
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-105vh) scale(0.3); opacity: 0; }
         }
 
-        /* كارت تسجيل الدخول الزجاجي المحسن */
-        .auth-card {
+        /* كارت تسجيل الدخول الاحترافي */
+        .login-card {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 45px 35px;
+            padding: 40px 35px;
             border-radius: 28px;
             box-shadow: 0 25px 55px rgba(0, 0, 0, 0.4);
             text-align: center;
-            max-width: 420px;
+            max-width: 400px;
             width: 90%;
             z-index: 10;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+            transition: transform 0.3s ease;
         }
 
-        .auth-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 70px rgba(40, 167, 69, 0.25);
+        /* تنسيق الأيقونة في الأعلى */
+        .top-icon {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(40, 167, 69, 0.5));
         }
 
         .logo-area {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 900;
             color: #ffffff;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
+            margin-bottom: 5px;
         }
 
         .logo-area span {
             color: #28a745;
-            text-shadow: 0 0 20px rgba(40, 167, 69, 0.7);
+            text-shadow: 0 0 20px rgba(40, 167, 69, 0.5);
         }
 
         .subtitle {
             color: #a2b9cc;
-            font-size: 14px;
-            margin-bottom: 40px;
+            font-size: 13px;
+            margin-bottom: 30px;
         }
 
-        /* زر الدخول الموحد الاحترافي مضاف إليه الأيقونة */
-        .btn-sso {
-            position: relative;
+        /* مجموعة الإدخال */
+        .input-group {
+            margin-bottom: 18px;
+            text-align: right;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input::placeholder {
+            color: #b0c4de;
+            opacity: 0.7;
+        }
+
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #28a745;
+            box-shadow: 0 0 12px rgba(40, 167, 69, 0.3);
+        }
+
+        /* زر الدخول الاحترافي */
+        .btn-login {
             background: linear-gradient(135deg, #28a745, #19692c);
             color: #ffffff;
             border: none;
-            padding: 16px 28px;
+            padding: 14px;
             font-size: 16px;
             font-weight: 700;
-            border-radius: 16px;
+            border-radius: 12px;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 8px 24px rgba(40, 167, 69, 0.35);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px; /* المسافة بين الأيقونة والنص */
+            margin-top: 10px;
         }
 
-        /* تنسيق الأيقونة المضافة */
-        .btn-sso img {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
-        }
-
-        .btn-sso:hover {
+        .btn-login:hover {
             background: linear-gradient(135deg, #218838, #145323);
-            box-shadow: 0 12px 32px rgba(40, 167, 69, 0.55);
-            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.5);
+            transform: scale(1.01);
         }
 
-        .btn-sso:active {
-            transform: scale(0.98);
+        /* رابط إنشاء حساب */
+        .signup-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: #b0c4de;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.2s;
         }
 
-        /* ستايل شاشة التحميل التلقائي الصامتة */
-        .loader {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top-color: #28a745;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 20px auto 0 auto;
+        .signup-link span {
+            color: #28a745;
+            font-weight: 700;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            display: none;
-            color: #ffffff;
-            font-size: 15px;
-            margin-top: 18px;
-            font-weight: 600;
-            animation: pulse 1.5s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+        .signup-link:hover span {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<!-- جزيئات الخلفية المتحركة لعنصر الـ AI -->
+<!-- خلفية الجزيئات الطائرة -->
 <div class="particles" id="particleContainer"></div>
 
-<div class="auth-card">
-    <div class="logo-area">Alislamiah <span>AI</span></div>
-    <div class="subtitle">بوابة التحقق الفوري والآمن للمنصات</div>
+<div class="login-card">
+    <!-- الأيقونة المطلوبة في الأعلى تماماً -->
+    <img src="icon.png" alt="Logo" class="top-icon">
     
-    <!-- زر تسجيل الدخول الاحترافي مع استدعاء أيقونتك -->
-    <button id="ssoAuthBtn" class="btn-sso">
-        <img src="icon.png" alt="Icon">
-        Sign in with Alislamiah AI
-    </button>
+    <div class="logo-area">Alislamiah <span>AI</span></div>
+    <div class="subtitle">مرحباً بك مجدداً في متصفح الإسلامية الذكي</div>
+    
+    <!-- نموذج تسجيل الدخول العادي -->
+    <form id="loginForm">
+        <div class="input-group">
+            <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="كلمة المرور" required>
+        </div>
+        <button type="submit" class="btn-login">دخول</button>
+    </form>
 
-    <!-- واجهة التوجيه الآلي التلقائي -->
-    <div class="loader" id="spinner"></div>
-    <div class="loading-text" id="spinnerText">جاري توجيهك بأمان إلى الرئيسية...</div>
+    <!-- رابط التحويل الفوري لصفحة إنشاء حساب -->
+    <a href="signup.html" class="signup-link">ليس لديك حساب؟ <span>إنشاء حساب جديد</span></a>
 </div>
 
 <script>
-const authBtn = document.getElementById('ssoAuthBtn');
-const spinner = document.getElementById('spinner');
-const spinnerText = document.getElementById('spinnerText');
-
-// 1. منطق الفحص الذكي والتحويل التلقائي عند العودة
+// توليد الجزيئات ديناميكياً لجمالية الخلفية
 window.addEventListener('DOMContentLoaded', function() {
-    // بناء نظام الجزيئات تلقائياً في الخلفية
-    createParticles();
-
-    if (localStorage.getItem('alislamiah_auth_state') === 'authorized') {
-        // التحويل للمظهر الصامت لإتمام التوجيه دون ظهور الأزرار
-        authBtn.style.display = 'none';
-        spinner.style.display = 'block';
-        spinnerText.style.display = 'block';
-
-        // تدمير الجلسة المؤقتة فوراً لتجنب الحلقات اللانهائية
-        localStorage.removeItem('alislamiah_auth_state');
-        
-        // التحويل المباشر مع تأثير تأخير بصري بسيط جداً (500 مللي ثانية) لجمالية الحركة
-        setTimeout(function() {
-            window.location.replace("https://github.io");
-        }, 500);
-    }
-});
-
-// 2. منطق إرسال المستخدم وبدء العملية عند نقر الزر
-authBtn.addEventListener('click', function() {
-    localStorage.setItem('alislamiah_auth_state', 'authorized');
-    window.location.href = "https://github.io";
-});
-
-// دالة لتوليد الجزيئات المتحركة ديناميكياً لتوزيع عشوائي مذهل
-function createParticles() {
     const container = document.getElementById('particleContainer');
-    const particleCount = 15; // عدد الجزيئات المتطايرة
-    
+    const particleCount = 15;
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('span');
         particle.classList.add('particle');
-        
-        // توزيع الأحجام والمواقع والسرعات بشكل عشوائي احترافي
-        const size = Math.random() * 8 + 4;
+        const size = Math.random() * 6 + 4;
         particle.style.width = size + 'px';
         particle.style.height = size + 'px';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.animationDelay = Math.random() * 8 + 's';
-        particle.style.animationDuration = Math.random() * 12 + 8 + 's';
-        
+        particle.style.animationDuration = Math.random() * 10 + 6 + 's';
         container.appendChild(particle);
     }
-}
+});
+
+// معالجة نموذج الإرسال (يمكنك ربطه بالـ Backend لاحقاً)
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    alert('سيتم ربط عملية تسجيل الدخول بنظامك البرمجي هنا لاحقاً.');
+});
 </script>
 
 </body>
