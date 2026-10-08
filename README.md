@@ -183,6 +183,25 @@
     }
 
     applyLanguage(currentLang);
+(function () {
+    const SESSION_KEY = "alislamiah_tube_session";
+
+    try {
+        const session = JSON.parse(
+            localStorage.getItem(SESSION_KEY) || "null"
+        );
+
+        if (!session || session.loggedIn !== true) {
+            window.location.replace("signin.html");
+        }
+
+    } catch (error) {
+        localStorage.removeItem(SESSION_KEY);
+        window.location.replace("signin.html");
+    }
+})();
+
+
   </script>
 </body>
 </html>
