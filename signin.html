@@ -1,679 +1,348 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الإسلامية Tube | تسجيل الدخول</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts (Cairo) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #0f766e;
+      --primary-hover: #0d9488;
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --input-bg: rgba(15, 23, 42, 0.6);
+      --error-color: #ef4444;
+      --success-color: #10b981;
+    }
 
-<title>Alislamiah Tube - تسجيل الدخول</title>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
 
-<link rel="icon" href="icon.png">
+    body {
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-main);
+      padding: 20px;
+    }
 
-<style>
+    .auth-container {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
 
-*{box-sizing:border-box}
+    .brand-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-body{
-margin:0;
-min-height:100vh;
-background:
-radial-gradient(circle at top,#0d3264,#041225 48%,#020812);
-color:#fff;
-font-family:Arial,sans-serif;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:18px;
-}
+    .brand-logo {
+      font-size: 2.5rem;
+      color: #2dd4bf;
+      margin-bottom: 10px;
+    }
 
-.box{
-width:100%;
-max-width:430px;
-background:rgba(5,19,40,.95);
-border:1px solid #1b4778;
-border-radius:27px;
-padding:33px 23px;
-box-shadow:0 25px 70px #0009;
-}
+    .brand-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
 
-.logo{text-align:center}
+    .brand-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
 
-.logo img{
-width:84px;
-height:84px;
-border-radius:21px;
-object-fit:contain;
-}
+    .auth-tabs {
+      display: flex;
+      background: rgba(15, 23, 42, 0.4);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 25px;
+      border: 1px solid var(--border-color);
+    }
 
-h1{
-text-align:center;
-margin:16px 0 7px;
-font-size:25px;
-}
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
 
-.sub{
-text-align:center;
-color:#9db4d1;
-font-size:14px;
-margin-bottom:26px;
-}
+    .tab-btn.active {
+      background: var(--primary-color);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
+    }
 
-.field{
-margin:16px 0;
-}
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
 
-label{
-display:block;
-font-size:14px;
-margin-bottom:7px;
-color:#dbe8f7;
-}
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
 
-input{
-width:100%;
-height:52px;
-border-radius:14px;
-border:1px solid #193c64;
-background:#091d38;
-color:#fff;
-padding:0 15px;
-outline:none;
-font-size:15px;
-}
+    .input-wrapper {
+      position: relative;
+    }
 
-input:focus{
-border-color:#2b8cff;
-box-shadow:0 0 0 3px #1680ff18;
-}
+    .input-wrapper i {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
 
-.btn{
-width:100%;
-height:53px;
-border:0;
-border-radius:15px;
-background:linear-gradient(135deg,#2180ff,#0752c7);
-color:#fff;
-font-size:16px;
-font-weight:bold;
-margin-top:7px;
-cursor:pointer;
-}
+    .form-input {
+      width: 100%;
+      padding: 12px 42px 12px 16px;
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
 
-.msg{
-text-align:center;
-min-height:25px;
-margin:14px 0;
-font-size:14px;
-line-height:1.6;
-}
+    .form-input:focus {
+      border-color: #2dd4bf;
+      box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15);
+    }
 
-.err{color:#ff7777}
-.ok{color:#54e39a}
+    .options-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      font-size: 0.85rem;
+    }
 
-.bottom{
-text-align:center;
-color:#9bb1cb;
-font-size:14px;
-margin-top:18px;
-}
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
 
-.link{
-background:none;
-border:0;
-color:#4c9cff;
-font-weight:bold;
-cursor:pointer;
-font-size:14px;
-}
+    .remember-me input {
+      accent-color: var(--primary-color);
+      width: 16px;
+      height: 16px;
+    }
 
-.langs{
-display:flex;
-justify-content:center;
-gap:7px;
-margin-top:22px;
-}
+    .forgot-link {
+      color: #2dd4bf;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
 
-.langs button{
-background:#071a34;
-color:#a5bad3;
-border:1px solid #20446d;
-border-radius:9px;
-padding:7px 10px;
-cursor:pointer;
-}
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
 
-.langs .active{
-background:#125dc9;
-color:#fff;
-border-color:#318aff;
-}
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
 
-/* نافذة حفظ كلمة المرور */
+    .submit-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
 
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:#000b;
-backdrop-filter:blur(5px);
-align-items:center;
-justify-content:center;
-padding:18px;
-z-index:5;
-}
+    .form-box {
+      display: none;
+    }
 
-.card{
-width:100%;
-max-width:370px;
-background:#071a34;
-border:1px solid #28537e;
-border-radius:22px;
-padding:25px;
-text-align:center;
-box-shadow:0 20px 60px #000b;
-}
+    .form-box.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
 
-.ico{
-font-size:37px;
-}
-
-.card h2{
-font-size:20px;
-margin:10px 0;
-}
-
-.card p{
-color:#9db4d1;
-font-size:14px;
-line-height:1.7;
-}
-
-.actions{
-display:flex;
-gap:10px;
-margin-top:20px;
-}
-
-.actions button{
-flex:1;
-height:46px;
-border-radius:12px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.yes{
-background:#1769df;
-border:0;
-color:white;
-}
-
-.no{
-background:#0b213d;
-border:1px solid #315276;
-color:white;
-}
-
-</style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="box">
-
-<div class="logo">
-<img src="icon.png" alt="Alislamiah Tube">
-</div>
-
-<h1 id="title">تسجيل الدخول</h1>
-
-<div class="sub" id="sub">
-سجّل الدخول إلى Alislamiah Tube
-</div>
-
-<form id="form">
-
-<div class="field">
-
-<label id="accountL">
-البريد الإلكتروني أو رقم الهاتف
-</label>
-
-<input
-id="account"
-required
-autocomplete="username"
->
-
-</div>
-
-<div class="field">
-
-<label id="passL">
-كلمة المرور
-</label>
-
-<input
-id="pass"
-type="password"
-required
-autocomplete="current-password"
->
-
-</div>
-
-<button class="btn" id="login">
-تسجيل الدخول
-</button>
-
-</form>
-
-<div id="msg" class="msg"></div>
-
-<div class="bottom">
-
-<span id="noAccount">
-ليس لديك حساب؟
-</span>
-
-<button
-class="link"
-onclick="location.href='signup.html'"
-id="signup"
->
-إنشاء حساب
-</button>
-
-</div>
-
-<div class="langs">
-
-<button data-l="ar">العربية</button>
-<button data-l="fr">Français</button>
-<button data-l="en">English</button>
-
-</div>
-
-</div>
-
-
-<!-- نافذة الحفظ -->
-
-<div class="modal" id="modal">
-
-<div class="card">
-
-<div class="ico">🔐</div>
-
-<h2 id="saveTitle">
-هل تريد حفظ كلمة المرور؟
-</h2>
-
-<p id="saveText">
-سيتم حفظها على هذا الجهاز ويمكنك الوصول إليها لاحقًا من صفحة كلمات المرور المحفوظة.
-</p>
-
-<div class="actions">
-
-<button class="yes" id="yes">
-نعم، حفظها
-</button>
-
-<button class="no" id="no">
-لا، شكرًا
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<script>
-
-const USERS_KEY="alislamiah_tube_users";
-const SESSION_KEY="alislamiah_tube_session";
-const SAVED_KEY="alislamiah_tube_saved_passwords";
-const LANG_KEY="alislamiah_tube_lang";
-
-
-function getUsers(){
-
-try{
-
-const users=
-JSON.parse(
-localStorage.getItem(USERS_KEY)||"[]"
-);
-
-return Array.isArray(users)?users:[];
-
-}catch{
-
-return [];
-
-}
-
-}
-
-
-function normalizeEmail(v){
-
-return String(v||"")
-.trim()
-.toLowerCase();
-
-}
-
-
-function normalizePhone(v){
-
-return String(v||"")
-.replace(/\s+/g,"")
-.trim();
-
-}
-
-
-function findUser(account){
-
-const value=String(account||"").trim();
-
-const email=normalizeEmail(value);
-const phone=normalizePhone(value);
-
-return getUsers().find(user=>
-
-normalizeEmail(user.email)===email ||
-normalizePhone(user.phone)===phone
-
-)||null;
-
-}
-
-
-function setSession(user){
-
-localStorage.setItem(
-SESSION_KEY,
-JSON.stringify({
-
-id:user.id,
-email:user.email,
-phone:user.phone,
-name:user.name||"",
-loggedIn:true,
-time:Date.now()
-
-})
-);
-
-}
-
-
-function savePasswordForUser(user,password){
-
-let list=[];
-
-try{
-
-list=
-JSON.parse(
-localStorage.getItem(SAVED_KEY)||"[]"
-);
-
-}catch{
-
-list=[];
-
-}
-
-if(!Array.isArray(list)){
-list=[];
-}
-
-list=list.filter(
-item=>item.userId!==user.id
-);
-
-list.push({
-
-userId:user.id,
-email:user.email,
-phone:user.phone,
-password:password,
-savedAt:Date.now()
-
-});
-
-localStorage.setItem(
-SAVED_KEY,
-JSON.stringify(list)
-);
-
-}
-
-
-const T={
-
-ar:{
-title:"تسجيل الدخول",
-sub:"سجّل الدخول إلى Alislamiah Tube",
-account:"البريد الإلكتروني أو رقم الهاتف",
-pass:"كلمة المرور",
-login:"تسجيل الدخول",
-no:"ليس لديك حساب؟",
-signup:"إنشاء حساب",
-empty:"يرجى إدخال بيانات الدخول.",
-notfound:"الحساب غير موجود. أنشئ حسابًا جديدًا.",
-wrong:"كلمة المرور غير صحيحة.",
-ok:"تم تسجيل الدخول بنجاح.",
-saveTitle:"هل تريد حفظ كلمة المرور؟",
-saveText:"سيتم حفظها على هذا الجهاز ويمكنك الوصول إليها لاحقًا من صفحة كلمات المرور المحفوظة.",
-yes:"نعم، حفظها",
-noSave:"لا، شكرًا"
-},
-
-fr:{
-title:"Connexion",
-sub:"Connectez-vous à Alislamiah Tube",
-account:"E-mail ou numéro de téléphone",
-pass:"Mot de passe",
-login:"Se connecter",
-no:"Vous n'avez pas de compte ?",
-signup:"Créer un compte",
-empty:"Veuillez saisir vos identifiants.",
-notfound:"Compte introuvable. Créez un compte.",
-wrong:"Mot de passe incorrect.",
-ok:"Connexion réussie.",
-saveTitle:"Voulez-vous enregistrer le mot de passe ?",
-saveText:"Il sera enregistré sur cet appareil et accessible depuis la page des mots de passe enregistrés.",
-yes:"Oui, enregistrer",
-noSave:"Non, merci"
-},
-
-en:{
-title:"Sign in",
-sub:"Sign in to Alislamiah Tube",
-account:"Email or phone number",
-pass:"Password",
-login:"Sign in",
-no:"Don't have an account?",
-signup:"Create account",
-empty:"Please enter your login details.",
-notfound:"Account not found. Create an account.",
-wrong:"Incorrect password.",
-ok:"Signed in successfully.",
-saveTitle:"Do you want to save your password?",
-saveText:"It will be saved on this device and accessible from the saved passwords page.",
-yes:"Yes, save it",
-noSave:"No, thanks"
-}
-
-};
-
-
-let lang=
-localStorage.getItem(LANG_KEY)||"ar";
-
-let loggedUser=null;
-let enteredPassword="";
-
-
-function applyLanguage(){
-
-const t=T[lang];
-
-document.documentElement.lang=lang;
-
-document.documentElement.dir=
-lang==="ar"?"rtl":"ltr";
-
-document.getElementById("title").textContent=t.title;
-document.getElementById("sub").textContent=t.sub;
-document.getElementById("accountL").textContent=t.account;
-document.getElementById("passL").textContent=t.pass;
-document.getElementById("login").textContent=t.login;
-document.getElementById("noAccount").textContent=t.no;
-document.getElementById("signup").textContent=t.signup;
-
-document.getElementById("saveTitle").textContent=t.saveTitle;
-document.getElementById("saveText").textContent=t.saveText;
-document.getElementById("yes").textContent=t.yes;
-document.getElementById("no").textContent=t.noSave;
-
-document.querySelectorAll(".langs button")
-.forEach(button=>{
-
-button.classList.toggle(
-"active",
-button.dataset.l===lang
-);
-
-});
-
-}
-
-
-document.querySelectorAll(".langs button")
-.forEach(button=>{
-
-button.onclick=()=>{
-
-lang=button.dataset.l;
-
-localStorage.setItem(
-LANG_KEY,
-lang
-);
-
-applyLanguage();
-
-};
-
-});
-
-
-document.getElementById("form").onsubmit=function(e){
-
-e.preventDefault();
-
-const t=T[lang];
-
-const account=
-document.getElementById("account").value.trim();
-
-const password=
-document.getElementById("pass").value;
-
-const msg=
-document.getElementById("msg");
-
-msg.className="msg";
-msg.textContent="";
-
-
-if(!account||!password){
-
-msg.className="msg err";
-msg.textContent=t.empty;
-
-return;
-
-}
-
-
-const user=findUser(account);
-
-
-if(!user){
-
-msg.className="msg err";
-msg.textContent=t.notfound;
-
-return;
-
-}
-
-
-if(user.password!==password){
-
-msg.className="msg err";
-msg.textContent=t.wrong;
-
-return;
-
-}
-
-
-loggedUser=user;
-enteredPassword=password;
-
-setSession(user);
-
-msg.className="msg ok";
-msg.textContent=t.ok;
-
-
-setTimeout(()=>{
-
-document.getElementById("modal")
-.style.display="flex";
-
-},250);
-
-};
-
-
-function finishLogin(){
-
-location.href="index.html";
-
-}
-
-
-document.getElementById("yes").onclick=()=>{
-
-savePasswordForUser(
-loggedUser,
-enteredPassword
-);
-
-finishLogin();
-
-};
-
-
-document.getElementById("no").onclick=()=>{
-
-finishLogin();
-
-};
-
-
-applyLanguage();
-
-</script>
-
+  <div class="auth-container">
+    <div class="brand-header">
+      <div class="brand-logo">
+        <i class="fa-solid fa-play-circle"></i>
+      </div>
+      <div class="brand-title">الإسلامية Tube</div>
+      <div class="brand-subtitle">بوابتك للمحتوى الهادف والموثوق</div>
+    </div>
+
+    <!-- التبديل بين الدخول وإنشاء حساب -->
+    <div class="auth-tabs">
+      <button class="tab-btn active" onclick="switchTab('login')">تسجيل الدخول</button>
+      <button class="tab-btn" onclick="switchTab('register')">حساب جديد</button>
+    </div>
+
+    <!-- نموذج تسجيل الدخول -->
+    <form id="loginForm" class="form-box active" onsubmit="handleAuth(event, 'login')">
+      <div class="form-group">
+        <label>البريد الإلكتروني</label>
+        <div class="input-wrapper">
+          <i class="fa-regular fa-envelope"></i>
+          <input type="email" id="loginEmail" class="form-input" placeholder="name@example.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
+        </div>
+      </div>
+
+      <div class="options-row">
+        <label class="remember-me">
+          <input type="checkbox" id="rememberMe">
+          <span>حفظ كلمة المرور</span>
+        </label>
+        <a href="#" class="forgot-link">نسيت كلمة المرور؟</a>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span>دخول</span>
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+    </form>
+
+    <!-- نموذج إنشاء حساب جديد -->
+    <form id="registerForm" class="form-box" onsubmit="handleAuth(event, 'register')">
+      <div class="form-group">
+        <label>الاسم الكامل</label>
+        <div class="input-wrapper">
+          <i class="fa-regular fa-user"></i>
+          <input type="text" id="regName" class="form-input" placeholder="محمد أحمد" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>البريد الإلكتروني</label>
+        <div class="input-wrapper">
+          <i class="fa-regular fa-envelope"></i>
+          <input type="email" id="regEmail" class="form-input" placeholder="name@example.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="regPassword" class="form-input" placeholder="••••••••" required>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span>إنشاء الحساب</span>
+        <i class="fa-solid fa-user-plus"></i>
+      </button>
+    </form>
+  </div>
+
+  <script>
+    // التبديل بين الواجهات
+    function switchTab(tab) {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const forms = document.querySelectorAll('.form-box');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      forms.forEach(f => f.classList.remove('active'));
+
+      if (tab === 'login') {
+        tabs[0].classList.add('active');
+        document.getElementById('loginForm').classList.add('active');
+      } else {
+        tabs[1].classList.add('active');
+        document.getElementById('registerForm').classList.add('active');
+      }
+    }
+
+    // إدارة البيانات وتمرير الكلمات المحفوظة
+    function handleAuth(event, type) {
+      event.preventDefault();
+
+      if (type === 'login') {
+        const email = document.getElementById('loginEmail').value;
+        const remember = document.getElementById('rememberMe').checked;
+
+        if (remember) {
+          localStorage.setItem('saved_user_email', email);
+        } else {
+          localStorage.removeItem('saved_user_email');
+        }
+        alert('تم تسجيل الدخول بنجاح!');
+      } else {
+        alert('تم إنشاء الحساب بنجاح!');
+      }
+    }
+
+    // استرجاع الكلمات/البيانات المحفوظة عند التحميل
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedEmail = localStorage.getItem('saved_user_email');
+      if (savedEmail) {
+        document.getElementById('loginEmail').value = savedEmail;
+        document.getElementById('rememberMe').checked = true;
+      }
+    });
+  </script>
 </body>
 </html>
