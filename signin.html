@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة تسجيل الدخول الموحد | Alislamiah AI</title>
-    <!-- استيراد خطوط ومستندات احترافية -->
+    <!-- استيراد خط القاهرة الاحترافي -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
         }
 
         body {
-            background: radial-gradient(circle at top right, #1a2a6c, #275d38, #0f2027);
+            background: radial-gradient(circle at top right, #1a2a6c, #1f4e3d, #0f2027);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             display: flex;
@@ -26,6 +26,7 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            position: relative;
         }
 
         @keyframes gradientBG {
@@ -34,82 +35,116 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* كارت احترافي بتأثير زجاجي Glassmorphism */
+        /* حاوية الجزيئات الخلفية المتحركة */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            display: block;
+            background: rgba(40, 167, 69, 0.2);
+            border-radius: 50%;
+            animation: floatUp 12s linear infinite;
+            bottom: -20px;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-105vh) scale(0.3) rotate(360deg); opacity: 0; }
+        }
+
+        /* كارت تسجيل الدخول الزجاجي المحسن */
         .auth-card {
-            background: rgba(255, 255, 255, 0.07);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 40px 30px;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 45px 35px;
+            border-radius: 28px;
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.4);
             text-align: center;
-            max-width: 400px;
+            max-width: 420px;
             width: 90%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 10;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
         }
 
         .auth-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 60px rgba(40, 167, 69, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 70px rgba(40, 167, 69, 0.25);
         }
 
-        /* لوجو تخيلي ذكي ونظيف */
         .logo-area {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 900;
             color: #ffffff;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
         }
 
         .logo-area span {
-            color: #28a745; /* الزمردي */
-            text-shadow: 0 0 15px rgba(40, 167, 69, 0.6);
+            color: #28a745;
+            text-shadow: 0 0 20px rgba(40, 167, 69, 0.7);
         }
 
         .subtitle {
-            color: #b0c4de;
+            color: #a2b9cc;
             font-size: 14px;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
-        /* زر التسجيل بتصميم احترافي خارق */
+        /* زر الدخول الموحد الاحترافي مضاف إليه الأيقونة */
         .btn-sso {
             position: relative;
-            background: linear-gradient(135deg, #28a745, #1e7e34);
+            background: linear-gradient(135deg, #28a745, #19692c);
             color: #ffffff;
             border: none;
-            padding: 16px 32px;
+            padding: 16px 28px;
             font-size: 16px;
             font-weight: 700;
-            border-radius: 14px;
+            border-radius: 16px;
             cursor: pointer;
-            white-space: nowrap;
             width: 100%;
-            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+            box-shadow: 0 8px 24px rgba(40, 167, 69, 0.35);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px; /* المسافة بين الأيقونة والنص */
+        }
+
+        /* تنسيق الأيقونة المضافة */
+        .btn-sso img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
         }
 
         .btn-sso:hover {
-            background: linear-gradient(135deg, #218838, #19692c);
-            box-shadow: 0 12px 28px rgba(40, 167, 69, 0.5);
+            background: linear-gradient(135deg, #218838, #145323);
+            box-shadow: 0 12px 32px rgba(40, 167, 69, 0.55);
             transform: scale(1.02);
         }
 
         .btn-sso:active {
-            transform: scale(0.99);
+            transform: scale(0.98);
         }
 
-        /* أنيميشن التحميل عند التوجيه التلقائي المباشر */
+        /* ستايل شاشة التحميل التلقائي الصامتة */
         .loader {
             display: none;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border: 4px solid rgba(255, 255, 255, 0.1);
             border-top-color: #28a745;
             border-radius: 50%;
@@ -126,59 +161,89 @@
             display: none;
             color: #ffffff;
             font-size: 15px;
-            margin-top: 15px;
+            margin-top: 18px;
             font-weight: 600;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-<div class="auth-card" id="cardBox">
+<!-- جزيئات الخلفية المتحركة لعنصر الـ AI -->
+<div class="particles" id="particleContainer"></div>
+
+<div class="auth-card">
     <div class="logo-area">Alislamiah <span>AI</span></div>
     <div class="subtitle">بوابة التحقق الفوري والآمن للمنصات</div>
     
-    <!-- الزر الرئيسي الاحترافي -->
+    <!-- زر تسجيل الدخول الاحترافي مع استدعاء أيقونتك -->
     <button id="ssoAuthBtn" class="btn-sso">
+        <img src="icon.png" alt="Icon">
         Sign in with Alislamiah AI
     </button>
 
-    <!-- عناصر الواجهة الصامتة للتحميل المباشر -->
+    <!-- واجهة التوجيه الآلي التلقائي -->
     <div class="loader" id="spinner"></div>
     <div class="loading-text" id="spinnerText">جاري توجيهك بأمان إلى الرئيسية...</div>
 </div>
 
 <script>
-// العناصر الرسومية للتحكم بالأنيميشن والاحترافية
 const authBtn = document.getElementById('ssoAuthBtn');
 const spinner = document.getElementById('spinner');
 const spinnerText = document.getElementById('spinnerText');
 
-// 1. الفحص الفوري بمجرد الرجوع للصفحة أو تحميلها مجدداً
+// 1. منطق الفحص الذكي والتحويل التلقائي عند العودة
 window.addEventListener('DOMContentLoaded', function() {
+    // بناء نظام الجزيئات تلقائياً في الخلفية
+    createParticles();
+
     if (localStorage.getItem('alislamiah_auth_state') === 'authorized') {
-        // إخفاء الزر وإظهار تأثير التحميل الاحترافي ليرى المستخدم أن هناك معالجة ذكية تحدث
+        // التحويل للمظهر الصامت لإتمام التوجيه دون ظهور الأزرار
         authBtn.style.display = 'none';
         spinner.style.display = 'block';
         spinnerText.style.display = 'block';
 
-        // تنظيف العلامة لمنع التوجيه اللانهائي مستقبلاً
+        // تدمير الجلسة المؤقتة فوراً لتجنب الحلقات اللانهائية
         localStorage.removeItem('alislamiah_auth_state');
         
-        // التحويل المباشر والصامت إلى رئيسية تيوب بعد فترة تأخير بسيطة جداً (0.5 ثانية) للمظهر الجمالي فقط
+        // التحويل المباشر مع تأثير تأخير بصري بسيط جداً (500 مللي ثانية) لجمالية الحركة
         setTimeout(function() {
             window.location.replace("https://github.io");
         }, 500);
     }
 });
 
-// 2. معالجة الضغط على زر الدخول الموحد المحدث
+// 2. منطق إرسال المستخدم وبدء العملية عند نقر الزر
 authBtn.addEventListener('click', function() {
-    // زرع العلامة في الذاكرة ليفهمها الكود عند الرجوع
     localStorage.setItem('alislamiah_auth_state', 'authorized');
-    
-    // التوجيه المباشر وفوراً لصفحة تسجيل دخول الذكاء الاصطناعي
     window.location.href = "https://github.io";
 });
+
+// دالة لتوليد الجزيئات المتحركة ديناميكياً لتوزيع عشوائي مذهل
+function createParticles() {
+    const container = document.getElementById('particleContainer');
+    const particleCount = 15; // عدد الجزيئات المتطايرة
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('span');
+        particle.classList.add('particle');
+        
+        // توزيع الأحجام والمواقع والسرعات بشكل عشوائي احترافي
+        const size = Math.random() * 8 + 4;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = Math.random() * 12 + 8 + 's';
+        
+        container.appendChild(particle);
+    }
+}
 </script>
 
 </body>
