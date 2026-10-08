@@ -4,18 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alislamiah-Tube</title>
+
+  <!-- سكربت حماية الصفحة: يتم تنفيذه فوراً قبل تحميل باقي عناصر الواجهة -->
+  <script>
+    (function () {
+      const SESSION_KEY = "alislamiah_tube_session";
+      try {
+        const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+        const isLoggedInSession = sessionStorage.getItem("isLoggedIn") === "true";
+        const isRemembered = localStorage.getItem("alislamiah_remember") === "true";
+
+        // التحقق مما إذا كان المستخدم غير مسجل دخول
+        const isUserLoggedIn = (session && session.loggedIn === true) || isLoggedInSession || isRemembered;
+
+        if (!isUserLoggedIn) {
+          window.location.replace("signin.html");
+        }
+      } catch (error) {
+        localStorage.removeItem(SESSION_KEY);
+        window.location.replace("signin.html");
+      }
+    })();
+  </script>
+
   <link rel="icon" href="icon.png" type="image/png">
-  <link href="https://googleapis.com" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    body { font-family: Arial, Tahoma, sans-serif; background: #07111f; color: #fff; min-height: 100vh; padding-bottom: 90px; }
+    body { font-family: 'Cairo', Arial, sans-serif; background: #07111f; color: #fff; min-height: 100vh; padding-bottom: 90px; }
     .header { background: #0a1728; padding: 12px 20px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #18304b; display: flex; align-items: center; gap: 12px; }
     .app-icon { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; }
     .header h1 { font-size: 1.35rem; font-weight: 700; color: #6fb7ff; }
     .main-content { padding: 24px 16px 30px; max-width: 1200px; margin: 0 auto; }
     .section-title { font-size: 1.3rem; margin-bottom: 20px; color: #ffffff; font-weight: 700; }
     .videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-    .video-card { background: #0b1a2c; border: 1px solid #173553; border-radius: 12px; overflow: hidden; text-decoration: none; color: #fff; display: block; box-shadow: 0 8px 25px rgba(0,0,0,0.25); }
+    .video-card { background: #0b1a2c; border: 1px solid #173553; border-radius: 12px; overflow: hidden; text-decoration: none; color: #fff; display: block; box-shadow: 0 8px 25px rgba(0,0,0,0.25); transition: transform 0.2s ease; }
+    .video-card:hover { transform: translateY(-3px); }
     .video-thumbnail { width: 100%; aspect-ratio: 16/9; background: #000; }
     .video-thumbnail video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
     .video-info { padding: 14px; }
@@ -63,7 +88,7 @@
         </div>
       </a>
 
-      <!-- فيديو 3: تم إرجاع فيديو بل الساعة موعدهم هنا بنجاح ✅ -->
+      <!-- فيديو 3 -->
       <a href="watch.html?v=IMG_20260812_142700_033.mp4&title=بل الساعة موعدهم والساعة أدهى وأمر تلاوة عطرة بصوت الشيخ مشاري العفاسي" class="video-card">
         <div class="video-thumbnail">
           <video preload="metadata" muted autoplay loop playsinline>
@@ -183,25 +208,6 @@
     }
 
     applyLanguage(currentLang);
-(function () {
-    const SESSION_KEY = "alislamiah_tube_session";
-
-    try {
-        const session = JSON.parse(
-            localStorage.getItem(SESSION_KEY) || "null"
-        );
-
-        if (!session || session.loggedIn !== true) {
-            window.location.replace("signin.html");
-        }
-
-    } catch (error) {
-        localStorage.removeItem(SESSION_KEY);
-        window.location.replace("signin.html");
-    }
-})();
-
-
   </script>
 </body>
 </html>
