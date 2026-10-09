@@ -25,7 +25,7 @@ h1{font-size:22px;font-weight:700;margin-bottom:6px}
 .divider{display:flex;align-items:center;gap:12px;margin:22px 0 16px;color:#5a7390;font-size:13px}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:#1e3a55}
 
-/* زر Alislamiah AI — ظاهر دائماً */
+/* زر Alislamiah AI */
 .btn-ai{
   width:100%;
   padding:14px;
@@ -57,16 +57,6 @@ h1{font-size:22px;font-weight:700;margin-bottom:6px}
 .message.success{color:#4ade80}
 .links{margin-top:20px;font-size:14px;color:#718ba6}
 .links a{color:#6fb7ff;text-decoration:none;font-weight:600}
-
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;justify-content:center;align-items:center;z-index:100}
-.modal-overlay.show{display:flex}
-.modal{background:#0b1a2c;border:1px solid #173553;border-radius:20px;padding:26px;width:90%;max-width:360px;text-align:center}
-.modal h3{margin-bottom:10px;font-size:17px}
-.modal p{color:#8aa4c0;font-size:14px;margin-bottom:20px;line-height:1.5}
-.modal-btns{display:flex;gap:10px}
-.modal-btns button{flex:1;padding:12px;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer}
-.btn-yes{background:linear-gradient(135deg,#087fff,#3d9cff);color:#fff}
-.btn-no{background:rgba(255,255,255,.08);color:#ccc}
 </style>
 </head>
 <body>
@@ -93,7 +83,6 @@ h1{font-size:22px;font-weight:700;margin-bottom:6px}
 
   <div class="divider">أو</div>
 
-  <!-- خيار تسجيل الدخول بواسطة Alislamiah AI — ظاهر دائماً -->
   <button type="button" class="btn-ai" onclick="loginWithAI()">
     <span class="badge">AI</span>
     تسجيل الدخول بواسطة Alislamiah AI
@@ -104,28 +93,10 @@ h1{font-size:22px;font-weight:700;margin-bottom:6px}
   </div>
 </div>
 
-<div class="modal-overlay" id="saveModal">
-  <div class="modal">
-    <h3>هل تريد حفظ كلمة المرور؟</h3>
-    <p>سيتم حفظها لاسترجاعها لاحقاً.</p>
-    <div class="modal-btns">
-      <button class="btn-yes" onclick="saveYes()">نعم، احفظها</button>
-      <button class="btn-no" onclick="saveNo()">لا</button>
-    </div>
-  </div>
-</div>
-
 <script>
-  // نفس مفاتيح صفحة Alislamiah AI داخل المستودع
   const USERS_KEY = "alislamiah_users";
   const CURRENT_KEY = "alislamiah_current_user";
-  const SAVED_KEY = "alislamiah_saved_passwords";
-
-  // اسم صفحة AI التي رفعتها في نفس المستودع
-  // إذا سمّيتها شيئاً آخر غيّر هذا السطر فقط
   const AI_SIGNIN_PAGE = "signin-ai.html";
-
-  let tempData = null;
 
   function getUsers() {
     try { return JSON.parse(localStorage.getItem(USERS_KEY) || "[]"); }
@@ -141,16 +112,17 @@ h1{font-size:22px;font-weight:700;margin-bottom:6px}
     localStorage.setItem(CURRENT_KEY, JSON.stringify(user));
   }
 
-  // إن كان مسجلاً مسبقاً → الرئيسية
+  // التوجيه المباشر للرئيسية إذا كان مسجلاً
   if (getCurrentUser()) {
     window.location.href = "index.html";
   }
 
-  // ========== دخول عادي ==========
+  // ========== تسجيل دخول عادي ==========
   function login() {
     const email = document.getElementById("email").value.trim().toLowerCase();
     const password = document.getElementById("password").value;
     const msg = document.getElementById("msg");
+
     msg.className = "message";
     msg.textContent = "";
 
@@ -167,60 +139,36 @@ h1{font-size:22px;font-weight:700;margin-bottom:6px}
       return;
     }
 
-    tempData = { name: found.name, email: found.email, password: found.password };
     setCurrentUser({ id: found.id, name: found.name, email: found.email });
-    document.getElementById("saveModal").classList.add("show");
+    msg.className = "message success";
+    msg.textContent = "تم تسجيل الدخول بنجاح! جارٍ التحويل...";
+
+    setTimeout(function () {
+      window.location.href = "index.html";
+    }, 600);
   }
 
-  // ========== تسجيل الدخول بواسطة Alislamiah AI ==========
-  // يقرأ localStorage فقط — لا يذهب لموقع خارجي
+  // ========== دخول بواسطة AI ==========
   function loginWithAI() {
     const msg = document.getElementById("msg");
     msg.className = "message";
     msg.textContent = "";
 
     const user = getCurrentUser();
-
     if (user && user.email) {
-      // جلسة AI موجودة في localStorage → دخول مباشر
       msg.className = "message success";
       msg.textContent = "تم الدخول بحساب Alislamiah AI...";
       setTimeout(function () {
         window.location.href = "index.html";
-      }, 700);
+      }, 600);
       return;
     }
 
-    // لا توجد جلسة → افتح صفحة AI داخل نفس المستودع لتسجيل الدخول
-    // بعد الدخول منها تُحفظ الجلسة في localStorage ثم ارجع هنا
     msg.className = "message error";
-    msg.textContent = "لا توجد جلسة AI. جارٍ فتح صفحة Alislamiah AI...";
+    msg.textContent = "جارٍ فتح صفحة Alislamiah AI...";
     setTimeout(function () {
       window.location.href = AI_SIGNIN_PAGE;
-    }, 900);
-  }
-
-  function saveYes() {
-    if (tempData) {
-      const saved = JSON.parse(localStorage.getItem(SAVED_KEY) || "[]");
-      if (!saved.find(s => s.email === tempData.email && s.site === "Alislamiah Tube")) {
-        saved.unshift({
-          name: tempData.name,
-          email: tempData.email,
-          password: tempData.password,
-          site: "Alislamiah Tube",
-          savedAt: new Date().toISOString()
-        });
-        localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
-      }
-    }
-    document.getElementById("saveModal").classList.remove("show");
-    window.location.href = "index.html";
-  }
-
-  function saveNo() {
-    document.getElementById("saveModal").classList.remove("show");
-    window.location.href = "index.html";
+    }, 800);
   }
 
   document.getElementById("password").addEventListener("keypress", function (e) {
