@@ -1,233 +1,231 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول | Alislamiah AI</title>
-    <!-- استيراد خط القاهرة الاحترافي -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول - Alislamiah Tube</title>
+<link rel="icon" href="icon.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
+body{background:#07111f;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;position:relative}
+.bg{position:fixed;inset:0;background:
+  radial-gradient(circle at 15% 20%,rgba(111,183,255,.22),transparent 38%),
+  radial-gradient(circle at 85% 30%,rgba(8,120,255,.18),transparent 35%),
+  #07111f;z-index:0}
+.container{position:relative;z-index:1;width:92%;max-width:400px;background:rgba(11,26,44,.9);border:1px solid #173553;border-radius:24px;padding:40px 28px 32px;box-shadow:0 25px 50px rgba(0,0,0,.45);text-align:center}
+.logo{width:72px;height:72px;margin:0 auto 18px;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#087fff,#6fb7ff);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(8,127,255,.4)}
+.logo img{width:100%;height:100%;object-fit:cover}
+h1{font-size:22px;font-weight:700;margin-bottom:6px}
+.subtitle{color:#718ba6;font-size:14px;margin-bottom:24px}
+.input-group{margin-bottom:14px;text-align:right}
+.input-group label{display:block;font-size:13px;color:#8aa4c0;margin-bottom:6px}
+.input-group input{width:100%;padding:14px 15px;background:rgba(255,255,255,.06);border:1.5px solid #1e3a55;border-radius:12px;color:#fff;font-size:15px;outline:none}
+.input-group input:focus{border-color:#6fb7ff;box-shadow:0 0 0 3px rgba(111,183,255,.15)}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#087fff,#3d9cff);color:#fff;font-size:16px;font-weight:700;cursor:pointer;margin-top:6px}
+.divider{display:flex;align-items:center;gap:12px;margin:22px 0 16px;color:#5a7390;font-size:13px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:#1e3a55}
 
-        body {
-            background: radial-gradient(circle at top right, #1a2a6c, #1f4e3d, #0f2027);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
+/* زر Alislamiah AI — ظاهر دائماً */
+.btn-ai{
+  width:100%;
+  padding:14px;
+  border:1.5px solid rgba(111,183,255,.5);
+  border-radius:12px;
+  background:rgba(111,183,255,.1);
+  color:#6fb7ff;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  transition:.25s;
+}
+.btn-ai:hover{background:rgba(111,183,255,.18);border-color:#6fb7ff}
+.btn-ai .badge{
+  background:linear-gradient(135deg,#087fff,#00c3ff);
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  padding:4px 9px;
+  border-radius:7px;
+}
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+.message{margin-top:14px;font-size:14px;min-height:22px}
+.message.error{color:#ff6b6b}
+.message.success{color:#4ade80}
+.links{margin-top:20px;font-size:14px;color:#718ba6}
+.links a{color:#6fb7ff;text-decoration:none;font-weight:600}
 
-        /* جزيئات الخلفية المتحركة */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            display: block;
-            background: rgba(40, 167, 69, 0.15);
-            border-radius: 50%;
-            animation: floatUp 12s linear infinite;
-            bottom: -20px;
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(-105vh) scale(0.3); opacity: 0; }
-        }
-
-        /* كارت تسجيل الدخول الاحترافي */
-        .login-card {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 40px 35px;
-            border-radius: 28px;
-            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.4);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            z-index: 10;
-            transition: transform 0.3s ease;
-        }
-
-        /* تنسيق الأيقونة في الأعلى */
-        .top-icon {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px rgba(40, 167, 69, 0.5));
-        }
-
-        .logo-area {
-            font-size: 28px;
-            font-weight: 900;
-            color: #ffffff;
-            margin-bottom: 5px;
-        }
-
-        .logo-area span {
-            color: #28a745;
-            text-shadow: 0 0 20px rgba(40, 167, 69, 0.5);
-        }
-
-        .subtitle {
-            color: #a2b9cc;
-            font-size: 13px;
-            margin-bottom: 30px;
-        }
-
-        /* مجموعة الإدخال */
-        .input-group {
-            margin-bottom: 18px;
-            text-align: right;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 14px 20px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            color: #ffffff;
-            font-size: 15px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .input-group input::placeholder {
-            color: #b0c4de;
-            opacity: 0.7;
-        }
-
-        .input-group input:focus {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: #28a745;
-            box-shadow: 0 0 12px rgba(40, 167, 69, 0.3);
-        }
-
-        /* زر الدخول الاحترافي */
-        .btn-login {
-            background: linear-gradient(135deg, #28a745, #19692c);
-            color: #ffffff;
-            border: none;
-            padding: 14px;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 12px;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .btn-login:hover {
-            background: linear-gradient(135deg, #218838, #145323);
-            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.5);
-            transform: scale(1.01);
-        }
-
-        /* رابط إنشاء حساب */
-        .signup-link {
-            display: inline-block;
-            margin-top: 25px;
-            color: #b0c4de;
-            font-size: 14px;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .signup-link span {
-            color: #28a745;
-            font-weight: 700;
-        }
-
-        .signup-link:hover span {
-            text-decoration: underline;
-        }
-    </style>
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;justify-content:center;align-items:center;z-index:100}
+.modal-overlay.show{display:flex}
+.modal{background:#0b1a2c;border:1px solid #173553;border-radius:20px;padding:26px;width:90%;max-width:360px;text-align:center}
+.modal h3{margin-bottom:10px;font-size:17px}
+.modal p{color:#8aa4c0;font-size:14px;margin-bottom:20px;line-height:1.5}
+.modal-btns{display:flex;gap:10px}
+.modal-btns button{flex:1;padding:12px;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-yes{background:linear-gradient(135deg,#087fff,#3d9cff);color:#fff}
+.btn-no{background:rgba(255,255,255,.08);color:#ccc}
+</style>
 </head>
 <body>
+<div class="bg"></div>
 
-<!-- خلفية الجزيئات الطائرة -->
-<div class="particles" id="particleContainer"></div>
+<div class="container">
+  <div class="logo">
+    <img src="icon.png" alt="Tube" onerror="this.parentElement.innerHTML='▶️'">
+  </div>
+  <h1>تسجيل الدخول</h1>
+  <p class="subtitle">مرحباً بك في Alislamiah Tube</p>
 
-<div class="login-card">
-    <!-- الأيقونة المطلوبة في الأعلى تماماً -->
-    <img src="icon.png" alt="Logo" class="top-icon">
-    
-    <div class="logo-area">Alislamiah <span>AI</span></div>
-    <div class="subtitle">مرحباً بك مجدداً في متصفح الإسلامية الذكي</div>
-    
-    <!-- نموذج تسجيل الدخول العادي -->
-    <form id="loginForm">
-        <div class="input-group">
-            <input type="email" id="email" placeholder="البريد الإلكتروني" required>
-        </div>
-        <div class="input-group">
-            <input type="password" id="password" placeholder="كلمة المرور" required>
-        </div>
-        <button type="submit" class="btn-login">دخول</button>
-    </form>
+  <div class="input-group">
+    <label>البريد الإلكتروني</label>
+    <input type="email" id="email" placeholder="example@email.com">
+  </div>
+  <div class="input-group">
+    <label>كلمة المرور</label>
+    <input type="password" id="password" placeholder="••••••••">
+  </div>
 
-    <!-- رابط التحويل الفوري لصفحة إنشاء حساب -->
-    <a href="signup.html" class="signup-link">ليس لديك حساب؟ <span>إنشاء حساب جديد</span></a>
+  <button class="btn" onclick="login()">دخول</button>
+  <div class="message" id="msg"></div>
+
+  <div class="divider">أو</div>
+
+  <!-- خيار تسجيل الدخول بواسطة Alislamiah AI — ظاهر دائماً -->
+  <button type="button" class="btn-ai" onclick="loginWithAI()">
+    <span class="badge">AI</span>
+    تسجيل الدخول بواسطة Alislamiah AI
+  </button>
+
+  <div class="links">
+    ليس لديك حساب؟ <a href="signup.html">إنشاء حساب جديد</a>
+  </div>
+</div>
+
+<div class="modal-overlay" id="saveModal">
+  <div class="modal">
+    <h3>هل تريد حفظ كلمة المرور؟</h3>
+    <p>سيتم حفظها لاسترجاعها لاحقاً.</p>
+    <div class="modal-btns">
+      <button class="btn-yes" onclick="saveYes()">نعم، احفظها</button>
+      <button class="btn-no" onclick="saveNo()">لا</button>
+    </div>
+  </div>
 </div>
 
 <script>
-// توليد الجزيئات ديناميكياً لجمالية الخلفية
-window.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('particleContainer');
-    const particleCount = 15;
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('span');
-        particle.classList.add('particle');
-        const size = Math.random() * 6 + 4;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 8 + 's';
-        particle.style.animationDuration = Math.random() * 10 + 6 + 's';
-        container.appendChild(particle);
+  // نفس مفاتيح صفحة Alislamiah AI داخل المستودع
+  const USERS_KEY = "alislamiah_users";
+  const CURRENT_KEY = "alislamiah_current_user";
+  const SAVED_KEY = "alislamiah_saved_passwords";
+
+  // اسم صفحة AI التي رفعتها في نفس المستودع
+  // إذا سمّيتها شيئاً آخر غيّر هذا السطر فقط
+  const AI_SIGNIN_PAGE = "signin-ai.html";
+
+  let tempData = null;
+
+  function getUsers() {
+    try { return JSON.parse(localStorage.getItem(USERS_KEY) || "[]"); }
+    catch { return []; }
+  }
+
+  function getCurrentUser() {
+    try { return JSON.parse(localStorage.getItem(CURRENT_KEY) || "null"); }
+    catch { return null; }
+  }
+
+  function setCurrentUser(user) {
+    localStorage.setItem(CURRENT_KEY, JSON.stringify(user));
+  }
+
+  // إن كان مسجلاً مسبقاً → الرئيسية
+  if (getCurrentUser()) {
+    window.location.href = "index.html";
+  }
+
+  // ========== دخول عادي ==========
+  function login() {
+    const email = document.getElementById("email").value.trim().toLowerCase();
+    const password = document.getElementById("password").value;
+    const msg = document.getElementById("msg");
+    msg.className = "message";
+    msg.textContent = "";
+
+    if (!email || !password) {
+      msg.className = "message error";
+      msg.textContent = "يرجى إدخال البريد وكلمة المرور";
+      return;
     }
-});
 
-// معالجة نموذج الإرسال (يمكنك ربطه بالـ Backend لاحقاً)
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    alert('سيتم ربط عملية تسجيل الدخول بنظامك البرمجي هنا لاحقاً.');
-});
+    const found = getUsers().find(u => u.email === email && u.password === password);
+    if (!found) {
+      msg.className = "message error";
+      msg.textContent = "البريد أو كلمة المرور غير صحيحة";
+      return;
+    }
+
+    tempData = { name: found.name, email: found.email, password: found.password };
+    setCurrentUser({ id: found.id, name: found.name, email: found.email });
+    document.getElementById("saveModal").classList.add("show");
+  }
+
+  // ========== تسجيل الدخول بواسطة Alislamiah AI ==========
+  // يقرأ localStorage فقط — لا يذهب لموقع خارجي
+  function loginWithAI() {
+    const msg = document.getElementById("msg");
+    msg.className = "message";
+    msg.textContent = "";
+
+    const user = getCurrentUser();
+
+    if (user && user.email) {
+      // جلسة AI موجودة في localStorage → دخول مباشر
+      msg.className = "message success";
+      msg.textContent = "تم الدخول بحساب Alislamiah AI...";
+      setTimeout(function () {
+        window.location.href = "index.html";
+      }, 700);
+      return;
+    }
+
+    // لا توجد جلسة → افتح صفحة AI داخل نفس المستودع لتسجيل الدخول
+    // بعد الدخول منها تُحفظ الجلسة في localStorage ثم ارجع هنا
+    msg.className = "message error";
+    msg.textContent = "لا توجد جلسة AI. جارٍ فتح صفحة Alislamiah AI...";
+    setTimeout(function () {
+      window.location.href = AI_SIGNIN_PAGE;
+    }, 900);
+  }
+
+  function saveYes() {
+    if (tempData) {
+      const saved = JSON.parse(localStorage.getItem(SAVED_KEY) || "[]");
+      if (!saved.find(s => s.email === tempData.email && s.site === "Alislamiah Tube")) {
+        saved.unshift({
+          name: tempData.name,
+          email: tempData.email,
+          password: tempData.password,
+          site: "Alislamiah Tube",
+          savedAt: new Date().toISOString()
+        });
+        localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
+      }
+    }
+    document.getElementById("saveModal").classList.remove("show");
+    window.location.href = "index.html";
+  }
+
+  function saveNo() {
+    document.getElementById("saveModal").classList.remove("show");
+    window.location.href = "index.html";
+  }
+
+  document.getElementById("password").addEventListener("keypress", function (e) {
+    if (e.key === "Enter") login();
+  });
 </script>
-
 </body>
 </html>
