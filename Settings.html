@@ -5,25 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>الإعدادات - Alislamiah-Tube</title>
   <link rel="icon" href="icon.png" type="image/png">
-  
-  <!-- فحص تسجيل الدخول -->
-  <script>
-    (function () {
-      const SESSION_KEY = "alislamiah_tube_session";
-      try {
-        const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
-        const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
-        const isRemembered = localStorage.getItem("alislamiah_remember") === "true";
-
-        if ((!session || session.loggedIn !== true) && !isLoggedIn && !isRemembered) {
-          window.location.replace("signin.html");
-        }
-      } catch (error) {
-        localStorage.removeItem(SESSION_KEY);
-        window.location.replace("signin.html");
-      }
-    })();
-  </script>
 
   <style>
     * {
@@ -320,7 +301,7 @@
         <span class="arrow">›</span>
       </a>
 
-      <!-- الكلمات المحفوظة مع رابط المباشر كامل -->
+      <!-- الكلمات المحفوظة -->
       <a href="https://mohamedmadoui5195.github.io/Alislamiah-Tube/saved.password.html" class="setting-item">
         <div class="setting-icon">🔑</div>
         <div class="setting-content">
