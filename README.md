@@ -5,28 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alislamiah-Tube</title>
 
-  <!-- سكربت حماية الصفحة: يتم تنفيذه فوراً قبل تحميل باقي عناصر الواجهة -->
-  <script>
-    (function () {
-      const SESSION_KEY = "alislamiah_tube_session";
-      try {
-        const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
-        const isLoggedInSession = sessionStorage.getItem("isLoggedIn") === "true";
-        const isRemembered = localStorage.getItem("alislamiah_remember") === "true";
-
-        // التحقق مما إذا كان المستخدم غير مسجل دخول
-        const isUserLoggedIn = (session && session.loggedIn === true) || isLoggedInSession || isRemembered;
-
-        if (!isUserLoggedIn) {
-          window.location.replace("signin.html");
-        }
-      } catch (error) {
-        localStorage.removeItem(SESSION_KEY);
-        window.location.replace("signin.html");
-      }
-    })();
-  </script>
-
   <link rel="icon" href="icon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
