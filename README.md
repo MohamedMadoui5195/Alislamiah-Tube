@@ -11,6 +11,71 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body { font-family: 'Cairo', Arial, sans-serif; background: #07111f; color: #fff; min-height: 100vh; padding-bottom: 90px; }
+    
+    /* ========== شاشة الترحيب والتأثير (Splash Screen) ========== */
+    .splash-screen {
+      position: fixed;
+      inset: 0;
+      background: #07111f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .splash-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* الحاوية الدائرية التي تدور محيط الأيقونة */
+    .icon-spinner-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 28px;
+    }
+
+    /* حلقة الألوان الدوارة على المحيط */
+    .icon-spinner-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 32px;
+      background: conic-gradient(from 0deg, #087fff, #00c3ff, #6fb7ff, #3d9cff, #087fff);
+      animation: rotateBorder 1.8s linear infinite;
+    }
+
+    /* غطاء خلفي لفصل الأيقونة عن الإطار */
+    .icon-spinner-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: #07111f;
+      border-radius: 30px;
+    }
+
+    /* صورة الأيقونة بداخل الإطار */
+    .splash-icon {
+      position: relative;
+      z-index: 2;
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(8, 127, 255, 0.35);
+    }
+
+    @keyframes rotateBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ========== باقي تنسيقات الصفحة الرئيسية ========== */
     .header { background: #0a1728; padding: 12px 20px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #18304b; display: flex; align-items: center; gap: 12px; }
     .app-icon { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; }
     .header h1 { font-size: 1.35rem; font-weight: 700; color: #6fb7ff; }
@@ -31,6 +96,14 @@
   </style>
 </head>
 <body>
+
+  <!-- شاشة الترحيب المؤقتة قبل فتح الرئيسية -->
+  <div class="splash-screen" id="splash">
+    <div class="icon-spinner-wrapper">
+      <img src="icon.png" class="splash-icon" alt="Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' rx=\'20\' fill=\'%23087fff\'/><text x=\'50\' y=\'65\' font-size=\'50\' text-anchor=\'middle\' fill=\'white\'>▶</text></svg>'">
+    </div>
+  </div>
+
   <header class="header">
     <img src="icon.png" class="app-icon" alt="Alislamiah">
     <h1 id="header-title">Alislamiah-Tube</h1>
@@ -163,6 +236,16 @@
   </nav>
 
   <script>
+    // مؤقت الخمس ثوانٍ لإخفاء شاشة الترحيب
+    window.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        const splash = document.getElementById("splash");
+        if (splash) {
+          splash.classList.add("hidden");
+        }
+      }, 5000); // 5000 ميلي ثانية = 5 ثوانٍ
+    });
+
     const translations = {
       ar: { dir: "rtl", header: "Alislamiah-Tube", title: "أحدث الفيديوهات", home: "الرئيسية", search: "البحث", settings: "الإعدادات" },
       fr: { dir: "ltr", header: "Alislamiah-Tube", title: "Dernières Vidéos", home: "Accueil", search: "Recherche", settings: "Paramètres" },
